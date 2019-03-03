@@ -267,7 +267,7 @@ extension VideoPlayerViewController: PUIPlayerViewAppearanceDelegate {
     }
 
     func playerViewShouldShowPictureInPictureControl(_ playerView: PUIPlayerView) -> Bool {
-       return true
+       return false
     }
 
     func playerViewShouldShowSpeedControl(_ playerView: PUIPlayerView) -> Bool {
@@ -287,7 +287,7 @@ extension VideoPlayerViewController: PUIPlayerViewAppearanceDelegate {
     }
 
     func playerViewShouldShowFullScreenButton(_ playerView: PUIPlayerView) -> Bool {
-        return true
+        return false
     }
 
     func playerViewShouldShowTimelineView(_ playerView: PUIPlayerView) -> Bool {
