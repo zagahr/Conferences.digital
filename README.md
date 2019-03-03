@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Conferences.digital" src="https://github.com/zagahr/Conferences.digital/tree/master/.github/github_banner.png" width="60%">
+    <img alt="Conferences.digital" src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/github_banner.png" width="60%">
 </p>
 <p align="center">
 <a href="">
@@ -20,7 +20,7 @@
 
 ## Overview
 <p align="center">
-    <img alt="Screenshot" src="https://github.com/zagahr/Conferences.digital/tree/master/.github/screenshot.png" width="100%"></a>
+    <img alt="Screenshot" src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/screenshot.png" width="100%"></a>
 </p>
 
 <br>
@@ -42,8 +42,8 @@
 Some of you will see the warning in the screenshot below about the app "can't be opened because it is from an unidentified developer" when you first try to run it.
 
 <p align="center">
-    <img src="https://github.com/zagahr/Conferences.digital/tree/master/.github/damaged_error.png" alt="damaged error" width="40%">
-    <img src="https://github.com/zagahr/Conferences.digital/tree/master/.github/identity_error.png" alt="identity error" width="40%">
+    <img src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/damaged_error.png" alt="damaged error" width="40%">
+    <img src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/identity_error.png" alt="identity error" width="40%">
 </p>
 
 This is because I am not registered with Apple as part of their developer program. This is the first MacOS app that I've ever built, and I don't plan to release it in the Mac App Store so I don't want to pay the fees to register with Apple.
