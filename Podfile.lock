@@ -1,0 +1,65 @@
+PODS:
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - Fabric (1.9.0)
+  - FirebaseCore (5.2.0):
+    - GoogleUtilities/Logger (~> 5.2)
+  - GoogleUtilities/Environment (5.3.7)
+  - GoogleUtilities/Logger (5.3.7):
+    - GoogleUtilities/Environment
+  - LetsMove (1.24)
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
+  - Sparkle (1.21.3)
+  - TinyConstraints (3.3.1)
+  - YoutubePlayer-in-WKWebView (0.2.5)
+
+DEPENDENCIES:
+  - Crashlytics
+  - Fabric
+  - FirebaseCore
+  - LetsMove
+  - RealmSwift
+  - Sparkle
+  - TinyConstraints
+  - YoutubePlayer-in-WKWebView (from `https://github.com/zagahr/YoutubePlayer-in-WKWebView.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Crashlytics
+    - Fabric
+    - FirebaseCore
+    - GoogleUtilities
+    - LetsMove
+    - Realm
+    - RealmSwift
+    - Sparkle
+    - TinyConstraints
+
+EXTERNAL SOURCES:
+  YoutubePlayer-in-WKWebView:
+    :git: https://github.com/zagahr/YoutubePlayer-in-WKWebView.git
+
+CHECKOUT OPTIONS:
+  YoutubePlayer-in-WKWebView:
+    :commit: b9ab6514aa4f495f83552479bd813a47717e93ae
+    :git: https://github.com/zagahr/YoutubePlayer-in-WKWebView.git
+
+SPEC CHECKSUMS:
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
+  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  LetsMove: fefe56bc7bc7fb7d37049e28a14f297961229fc5
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  Sparkle: 3f75576db8b0265adef36c43249d747f22d0b708
+  TinyConstraints: dbf7519aefc01ea59d62244300c7718aec68e280
+  YoutubePlayer-in-WKWebView: 59b2a6157b043daf81e58e14bfc4a9c3264f6ed6
+
+PODFILE CHECKSUM: a960d79bff35083f39c79c5e6ada063fb1d7acdf
+
+COCOAPODS: 1.6.0

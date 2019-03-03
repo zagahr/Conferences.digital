@@ -1,0 +1,11 @@
+framework module ConferencesCore {
+  umbrella header "ConferencesCore.h"
+
+  export *
+  module * { export * }
+}
+
+module ConferencesCore.Swift {
+    header "ConferencesCore-Swift.h"
+    requires objc
+}
