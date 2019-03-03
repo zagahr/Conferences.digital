@@ -38,6 +38,7 @@ final class MainWindowController: NSWindowController {
 
         if UserDefaults.standard.bool(forKey: "signup") == false {
             window.setFrame(MainWindowController.defaultRect, display: true)
+            window.saveFrame(usingName: .init("main"))
         } else {
             window.setFrameUsingName("main")
         }

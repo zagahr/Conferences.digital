@@ -30,5 +30,4 @@ default_platform(:mac)
     sh("./../Pods/Sparkle/bin/generate_appcast ../../updates/")
     sh("eval $(docker-machine env conference-server)")
     sh("docker cp ../../updates conference-server_server_1:/app/Public/")
-  end
 end

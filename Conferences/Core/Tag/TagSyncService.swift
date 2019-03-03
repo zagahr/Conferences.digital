@@ -105,8 +105,23 @@ final class TagSyncService {
 
             return
         } else if !tag.isActive && contains(tags, tag) && !contains(defaultTags, tag) {
+            let copy = tag
+
             tags = tags.filter { $0.query != tag.query }
+
+            if existingTags.first(where: { $0.query == copy.query })?.isActive == false {
+                NotificationCenter.default.post(.init(name: .refreshTagView))
+                return
+            }
+
         } else if tag.isActive && contains(tags, tag) {
+            return
+        } else if !tag.isActive && contains(tags, tag) {
+            let copy = tag
+            if existingTags.first(where: { $0.query == copy.query })?.isActive == true {
+                NotificationCenter.default.post(.init(name: .refreshTableView))
+            }
+
             return
         }
 

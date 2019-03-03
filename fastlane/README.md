@@ -15,15 +15,9 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-## Mac
-### mac clear
+### release
 ```
-fastlane mac clear
-```
-Clear all data
-### mac release
-```
-fastlane mac release
+fastlane release
 ```
 Release new version and deploy to Sparkle
 

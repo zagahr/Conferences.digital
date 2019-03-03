@@ -95,6 +95,14 @@ class YoutubeWebViewController: NSViewController, Playable {
 }
 
 extension YoutubeWebViewController: WKYTPlayerViewDelegate {
+    func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
+        guard view.alphaValue == 0 else { return }
+
+        NSAnimationContext.runAnimationGroup({ _ in
+            view.animator().alphaValue = 1
+        }, completionHandler: nil)
+    }
+
     func playerView(_ playerView: WKYTPlayerView, didPlayTime playTime: Float) {
         guard durationFetchRunning == false else { return }
 
@@ -113,26 +121,11 @@ extension YoutubeWebViewController: WKYTPlayerViewDelegate {
                     self.duration = time
                 }
 
+                self.timer = 0
                 self.durationFetchRunning = false
             }
         } else {
             trackProgress(playTime: playTime)
         }
-    }
-
-    func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
-        guard view.alphaValue == 0 else { return }
-        
-        NSAnimationContext.runAnimationGroup({ _ in
-            view.animator().alphaValue = 1
-        }, completionHandler: nil)
-    }
-
-    func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {
-        guard view.alphaValue == 0 else { return }
-
-        NSAnimationContext.runAnimationGroup({ _ in
-            view.animator().alphaValue = 1
-        }, completionHandler: nil)
     }
 }
