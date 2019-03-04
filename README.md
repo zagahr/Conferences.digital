@@ -22,13 +22,14 @@
 `Conferences.digital` is the best way to watch the latest and greatest videos from your favourite developer conferences for free on your Mac. Either search specifically for conferences, talks, speakers or topics or simply browse through the catalog - you can add talks to your watchlist to save for later, favourite or continue watching where you left off.
 
 <br>
-As so
 
+As soon as new conferences/talks have been added it will be announced on [twitter](https://twitter.com/zagahr).
+<br>
 <br>
 
 **Download the latest release [here](https://conferences.digital/updates/Conferences.zip).**
 
-<br>
+
 
 ## Overview
 <p align="center">
