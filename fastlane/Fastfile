@@ -14,20 +14,56 @@
 # update_fastlane
 
 default_platform(:mac)
-  desc "Release new version and deploy to Sparkle"
-  lane :release do
-    increment_build_number
-    sh("rm -r ~/Library/Caches/Sparkle_generate_appcast/")
-    sh("rm ../../updates/*")
-    build_app(scheme: "Conferences-Release",
-          configuration: "Release",
-          workspace: "Conferences.xcworkspace",
-          output_directory: "../updates",
-          toolchain: "org.swift.5020190129a")
-    sh("cd ../../updates && zip -r Conferences.zip Conferences.app")
-    sh("rm -r ../../updates/Conferences.app/")
-    sh("mv ../../updates/Conferences.app.dSYM.zip ../../")
-    sh("./../Pods/Sparkle/bin/generate_appcast ../../updates/")
-    sh("eval $(docker-machine env conference-server)")
-    sh("docker cp ../../updates conference-server_server_1:/app/Public/")
-end
+  desc "Release new version"
+    lane :release do |options|
+      type = options[:type]
+
+      if type != "release" && type != "alpha"
+        UI.user_error!("Wrong release type use: alpha or release")
+      end
+
+      build
+      
+      build_number = get_build_number(xcodeproj: "Conferences.xcodeproj")
+      version = get_version_number(xcodeproj: "Conferences.xcodeproj")
+      
+      if type == "release"
+        tag = version
+      else 
+        tag = version + "-" + type + build_number
+      end
+      
+      filename = "Conferences_v" + tag + ".zip"
+
+      #clean Releases/
+      sh("mv ../Releases/Conferences.app.dSYM.zip ../../")
+      sh("rm ../Releases/Conferences_latest.zip")
+      sh("cd ../Releases && zip -r" + " " + filename + " " + "Conferences.app")
+      sh("rm -r ../Releases/Conferences.app")
+      sh("./../Pods/Sparkle/bin/generate_appcast ../Releases/")
+      sh("cd ../Releases && sed 's#https://conferences.digital/updates/#https://github.com/zagahr/Conferences.digital/releases/download/" + tag + "/#' appcast.xml > appcast.xml.tmp && mv appcast.xml.tmp appcast.xml")
+      
+      sh("rm -r ../../updates/*")
+      sh("cp ../Releases/" + filename + " ../../updates")
+      sh("cp ../Releases/appcast.xml ../../updates")
+      sh("mv ../Releases/" + filename + " ../Releases/Conferences_latest.zip")
+      
+      puts "All done"
+      puts "Tag: " + tag
+    end
+
+    desc "Deploy new version to Sparkle"
+    lane :deploy do
+      sh("eval $(docker-machine env conference-server)")
+      sh("docker cp ../../updates conference-server_server_1:/app/Public/")
+    end
+
+    desc "Build new release version"
+    lane :build  do
+      increment_build_number
+      build_app(scheme: "Conferences-Release",
+            configuration: "Release",
+            workspace: "Conferences.xcworkspace",
+            output_directory: "Releases",
+            toolchain: "org.swift.5020190129a")
+    end
