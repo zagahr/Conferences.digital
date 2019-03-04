@@ -97,7 +97,6 @@
 		B9A57FE4220EE6AD0052E8DC /* PIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A57FE3220EE6AD0052E8DC /* PIP.framework */; };
 		B9A580CD220EF6170052E8DC /* ChromeCastPlaybackProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A580CC220EF6170052E8DC /* ChromeCastPlaybackProvider.swift */; };
 		B9BD5B05220B3A34004CA17C /* ConferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BD5B04220B3A33004CA17C /* ConferenceView.swift */; };
-		B9C7EFE5221862D500A6D2D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B9C7EFE4221862D500A6D2D4 /* GoogleService-Info.plist */; };
 		B9F48A8E2201B6B700C9DAF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F48A8D2201B6B700C9DAF6 /* AppDelegate.swift */; };
 		B9F48A952201B6B700C9DAF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F48A932201B6B700C9DAF6 /* Main.storyboard */; };
 		B9F48AA12201B6B700C9DAF6 /* ConferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F48AA02201B6B700C9DAF6 /* ConferenceTests.swift */; };
@@ -238,7 +237,6 @@
 		B9A57FE3220EE6AD0052E8DC /* PIP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PIP.framework; path = ../../../../../System/Library/PrivateFrameworks/PIP.framework; sourceTree = "<group>"; };
 		B9A580CC220EF6170052E8DC /* ChromeCastPlaybackProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeCastPlaybackProvider.swift; sourceTree = "<group>"; };
 		B9BD5B04220B3A33004CA17C /* ConferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceView.swift; sourceTree = "<group>"; };
-		B9C7EFE4221862D500A6D2D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B9F48A8A2201B6B700C9DAF6 /* Conferences.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Conferences.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F48A8D2201B6B700C9DAF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9F48A942201B6B700C9DAF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -503,7 +501,6 @@
 		B961F8FF220E0BFB00ABE417 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				B9C7EFE4221862D500A6D2D4 /* GoogleService-Info.plist */,
 				B981891D221440C900FE8276 /* Conferences-Debug.plist */,
 				B981891F2214411100FE8276 /* Conferences-Release.plist */,
 				B97E6B5522086CCE00ECCE81 /* NSColor+hex.swift */,
@@ -752,7 +749,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9C7EFE5221862D500A6D2D4 /* GoogleService-Info.plist in Resources */,
 				B98189202214411100FE8276 /* Conferences-Release.plist in Resources */,
 				B95DC5B72205CD380044A004 /* Media.xcassets in Resources */,
 				B95DC5B82205CD380044A004 /* WhiteSpinner.car in Resources */,
@@ -803,7 +799,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Conferences/Pods-Conferences-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/LetsMove/LetsMove.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -816,7 +811,6 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LetsMove.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -1128,13 +1122,6 @@
 				DEVELOPMENT_TEAM = MVQE7PHKXD;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
 					"$(PROJECT_DIR)/Conferences",
 					"$(PROJECT_DIR)/Conferences/Core",
 					"$(PROJECT_DIR)/Conferences/Core/Tag",
@@ -1180,13 +1167,6 @@
 				DEVELOPMENT_TEAM = MVQE7PHKXD;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
-					"$(PROJECT_DIR)/PlayerUI/MediaPlayer\\ Support",
 					"$(PROJECT_DIR)/Conferences",
 					"$(PROJECT_DIR)/Conferences/Core",
 					"$(PROJECT_DIR)/Conferences/Core/Tag",

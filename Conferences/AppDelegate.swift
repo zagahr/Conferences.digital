@@ -15,12 +15,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let coordinator = AppCoordinator(windowController: MainWindowController())
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        guard PFMoveIsInProgress() == false else { return }
+
+        coordinator.start()
+    }
+
+    func applicationWillFinishLaunching(_ notification: Notification) {
         #if !DEBUG
         PFMoveToApplicationsFolderIfNecessary()
         #endif
     }
 
     func applicationWillBecomeActive(_ notification: Notification) {
+        guard PFMoveIsInProgress() == false else { return }
+
         if !NSApp.windows.contains(where: { $0.isVisible }) {
             coordinator.windowController.showWindow(self)
         }
