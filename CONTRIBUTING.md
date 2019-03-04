@@ -9,7 +9,7 @@ Contribution are welcome as always. Checkout the existing issues or create issue
 - Fork and clone the repository.
 
 - Always branch from `develop` branch locally.
-  - Make sure that you have updated `develop` branch locally.
+- Make sure that you have updated `develop` branch locally.
 
 - If resolving an issue then create a branch with name like `bugfix-#<issue_number>` or `enhancement-#<issue_number>`
 
@@ -22,5 +22,3 @@ Contribution are welcome as always. Checkout the existing issues or create issue
 - Push your changes to your upstream fork.
 
 - Create a pull request to the `develop` branch of the repository.
-
-- Create a pull request to the `develop` branch of the repository
