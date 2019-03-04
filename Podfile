@@ -11,7 +11,7 @@ target 'Conferences' do
   pod 'FirebaseCore'
   pod 'Sparkle'
   pod 'LetsMove'
-  pod 'YoutubePlayer-in-WKWebView', :git => 'https://github.com/zagahr/YoutubePlayer-in-WKWebView.git'
+  pod 'YoutubePlayer-in-WKWebView', :git => 'https://github.com/zagahr/YoutubePlayer-in-WKWebView.git', :branch=>'master'
   
   target 'ConferencesTests' do
     inherit! :search_paths
