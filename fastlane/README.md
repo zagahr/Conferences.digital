@@ -19,7 +19,17 @@ or alternatively using `brew cask install fastlane`
 ```
 fastlane release
 ```
-Release new version and deploy to Sparkle
+Release new version
+### deploy
+```
+fastlane deploy
+```
+Deploy new version to Sparkle
+### build
+```
+fastlane build
+```
+Build new release version
 
 ----
 
