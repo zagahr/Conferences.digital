@@ -48,16 +48,21 @@ Some of you will see the warning in the screenshot below about the app "can't be
 
 This is because I am not registered with Apple as part of their developer program. This is the first MacOS app that I've ever built, and I don't plan to release it in the Mac App Store so I don't want to pay the fees to register with Apple.
 
-To bypass Apple's restriction, right-click the app and select **"Open"** the first time you use it or open your System Preferences application, click on the Security & Privacy selection, and there will be an **"Open Anyway"** button you can click. 
+To bypass Apple's restriction, right-click the app and select **"Open"** the first time you use it or open your System Preferences application, click on the Security & Privacy selection, and there will be an **"Open Anyway"** button you can click.
 
-## Work in Progress
-Please be advised that the project is stil a work in progress.
+## Contributing
+If you have any ideas how to improve the app or you wish yourself a new feature you can submit an pull request or create an issue [here](https://github.com/zagahr/Conferences.digital/issues).
+
+If you want to submit an pull request make sure you read the [contribution guidelines](CONTRIBUTING.md) first.
+
+## Bugs
+Please be advised that this project is still in an early stage and work in progress.
+
+If you encounter any bugs please create an issue [here](https://github.com/zagahr/Conferences.digital/issues) and be as descriptive as possible.
 
 ## Requirements
 `Conferences.digital` is written in Swift 5. Compatible with macOS 10.12.2+ <br>
 
-## Contributing
-At this stage please contact me before contributing code.
 
 ## Author
 Timon Blask - [@zagahr](https://twitter.com/zagahr)
