@@ -24,14 +24,14 @@ final class AppCoordinator {
             Fabric.with([Crashlytics.self])
         #endif
 
-        _ = NotificationCenter.default.addObserver(forName: NSApplication.didFinishLaunchingNotification, object: nil, queue: nil) { _ in self.startup() }
-
         if #available(macOS 10.14, *)  {
             NSApp.appearance = NSAppearance.init(named: .darkAqua)
         }
     }
 
-    private func startup() {
+    func start() {
+        mainCoordinator.start()
+
         windowController.contentViewController = mainCoordinator.rootViewController
         windowController.showWindow(self)
         windowController.windowFrameAutosaveName = "main"

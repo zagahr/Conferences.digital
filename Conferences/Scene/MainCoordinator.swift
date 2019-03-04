@@ -21,9 +21,11 @@ final class MainCoordinator {
         talkService = TalkService()
         talkService.delegate = self
         rootViewController.loadingView.onClicked = talkService.fetchData
-
-        rootViewController.loadingView.show()
         Storage.shared.clearCurrentlyWatching()
+    }
+
+    func start() {
+        rootViewController.loadingView.show()
         talkService.fetchData()
     }
 }
@@ -33,7 +35,6 @@ extension MainCoordinator: TalkServiceDelegate {
 
         if UserDefaults.standard.bool(forKey: "signup") == false {
             UserDefaults.standard.setValue(true, forKey: "signup")
-
             Answers.logSignUp(withMethod: nil, success: nil, customAttributes: nil)
         }
 
@@ -44,6 +45,7 @@ extension MainCoordinator: TalkServiceDelegate {
     }
 
     func fetchFailed(with error: APIError) {
+        Answers.logCustomEvent(withName: "Initial fetch failed", customAttributes: nil)
         self.rootViewController.loadingView.show(error)
     }
 }
