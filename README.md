@@ -22,6 +22,8 @@ As soon as new conferences/talks have been added it will be announced on [twitte
 
 **Download the latest release [here](https://github.com/zagahr/Conferences.digital/raw/master/Releases/Conferences_latest.zip).**
 
+<br>
+
 ## Overview
 <p align="center">
     <img alt="Screenshot" src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/screenshot.png" width="100%"></a>
@@ -33,6 +35,8 @@ As soon as new conferences/talks have been added it will be announced on [twitte
 - [x] Watchlist 
 - [x] Continue watching / Track progress
 - [ ] Touch Bar support
+
+<br>
 
 ## Installation
 Some of you will see the warning in the screenshot below about the app "can't be opened because it is from an unidentified developer" when you first try to run it.
@@ -46,22 +50,31 @@ This is because I am not registered with Apple as part of their developer progra
 
 To bypass Apple's restriction, right-click the app and select **"Open"** the first time you use it or open your System Preferences application, click on the Security & Privacy selection, and there will be an **"Open Anyway"** button you can click.
 
+<br>
 
 ## Contributing
 If you have any ideas how to improve the app or you wish yourself a new feature you can submit an pull request or create an issue [here](https://github.com/zagahr/Conferences.digital/issues).
 
 If you want to submit an pull request make sure you read the [contribution guidelines](CONTRIBUTING.md) first.
 
+<br>
+
 ## Bugs
 Please be advised that this project is still in an early stage and work in progress.
 
 If you encounter any bugs please create an issue [here](https://github.com/zagahr/Conferences.digital/issues) and be as descriptive as possible.
 
+<br>
+
 ## Requirements
 **Conferences.digital** is written in Swift 5. Compatible with macOS 10.12.2+ <br>
 
+<br>
+
 ## Author
 Timon Blask - [@zagahr](https://twitter.com/zagahr)
+
+<br>
 
 ## License
 **Conferences.digital** is available under the BSD-2-Clause license.
