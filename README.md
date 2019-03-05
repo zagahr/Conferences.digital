@@ -27,7 +27,7 @@ As soon as new conferences/talks have been added it will be announced on [twitte
 <br>
 <br>
 
-**Download the latest release [here](https://conferences.digital/updates/Conferences.zip).**
+**Download the latest release [here](https://github.com/zagahr/Conferences.digital/raw/master/Releases/Conferences_latest.zip).**
 
 
 
