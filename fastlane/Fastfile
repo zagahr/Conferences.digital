@@ -56,7 +56,7 @@ default_platform(:mac)
     lane :deploy do
       sh("eval $(docker-machine env conference-server)")
       sh("mv ../../updates/*.zip ../../updates/Conferences.zip")
-      sh("docker cp ../../updates conference-server_server_1:/app/Public/")
+      sh("docker cp ../../updates conferences-server_server_1:/app/Public/")
     end
 
     desc "Build new release version"
