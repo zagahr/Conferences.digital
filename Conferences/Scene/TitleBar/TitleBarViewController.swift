@@ -104,10 +104,7 @@ final class TitleBarViewController: NSViewController {
         if !searchTerm.isEmpty {
             searchBar.stringValue = ""
 
-            Answers.logCustomEvent(withName: "Searched for",
-                                   customAttributes: [
-                                    "term": searchTerm])
-
+            LoggingHelper.register(event: .searchFor, info: ["term": searchTerm])
 
             var tag = TagModel(title: searchTerm, isActive: true)
             TagSyncService.shared.handleTag(&tag)

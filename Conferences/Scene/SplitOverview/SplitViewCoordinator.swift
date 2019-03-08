@@ -52,11 +52,7 @@ extension SplitViewCoordinator: ShelfViewControllerDelegate {
 
         currentPlayer?.removeFromParent()
 
-        Answers.logCustomEvent(withName: "Played Talk",
-                                       customAttributes: [
-                                        "videoId": String(nowPlayingTalk.id),
-                                        "source": nowPlayingTalk.source.rawValue
-            ])
+        LoggingHelper.register(event: .playTalk, info: ["videoId": String(nowPlayingTalk.id), "source": nowPlayingTalk.source.rawValue])
 
         switch nowPlayingTalk.source {
             case .vimeo:

@@ -113,7 +113,7 @@ final class WelcomeView: NSView {
     @objc func remove() {
         UserDefaults.standard.setValue(true, forKey: "signup")
 
-        Answers.logSignUp(withMethod: "Digits", success: true, customAttributes: nil)
+        LoggingHelper.registerSignUp()
         MainCoordinator.keyEventsActive = true
         
         NSAnimationContext.runAnimationGroup({ _ in
@@ -208,7 +208,7 @@ final class DonationView: NSView {
     }
 
     @objc func openDonation() {
-        Answers.logCustomEvent(withName: "Opend Donate", customAttributes: nil)
+        LoggingHelper.register(event: .openDonate)
 
         let donateUrl = "https://paypal.me/pools/c/8cCb9seyQi"
         if let url = URL(string: donateUrl) {
@@ -217,7 +217,7 @@ final class DonationView: NSView {
     }
 
     @objc func openGithub() {
-        Answers.logCustomEvent(withName: "Opend Star on GitHub", customAttributes: nil)
+        LoggingHelper.register(event: .openStarOnGitHub)
 
         let githubUrl = "https://github.com/zagahr/conferences-macos.app"
         if let url = URL(string: githubUrl) {
