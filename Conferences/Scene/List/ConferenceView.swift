@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import Crashlytics
 
 final class ConferenceView: NSView {
     private var conference: ConferenceModel?
@@ -43,7 +42,7 @@ final class ConferenceView: NSView {
         l.lineBreakMode = .byWordWrapping
         l.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         l.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-
+        l.alignment = .left
         l.allowsDefaultTighteningForTruncation = true
         l.maximumNumberOfLines = 20
         return l
@@ -146,9 +145,9 @@ final class ConferenceView: NSView {
     private lazy var topStackView: NSStackView = {
         let v = NSStackView(views: [self.logo, self.informationStackView])
 
+        v.alignment = .top
         v.distribution = .fill
         v.spacing = 15
-        v.setContentCompressionResistancePriority(.required, for: .vertical)
 
         return v
     }()
@@ -158,9 +157,9 @@ final class ConferenceView: NSView {
 
         self.topStackView.width(to: v)
 
+        v.alignment = .top
         v.orientation = .vertical
-        v.distribution = .fillProportionally
-        v.spacing = 10
+        v.distribution = .equalCentering
 
         return v
     }()
@@ -203,10 +202,7 @@ final class ConferenceView: NSView {
 
     @objc func openHomepage() {
         if let url = URL(string: self.conference?.url ?? "") {
-            Answers.logCustomEvent(withName: "Opend Conference Homepage",
-                                   customAttributes: [
-                                    "conferenceId": String(self.conference!.id)])
-
+            LoggingHelper.register(event:.openConferenceHomepage, info: ["conferenceId": String(self.conference!.id)])
             NSWorkspace.shared.open(url)
         }
     }
@@ -214,9 +210,7 @@ final class ConferenceView: NSView {
     @objc func openTwitter() {
         guard let twitterHandle = self.conference?.organisator.twitter else { return }
 
-        Answers.logCustomEvent(withName: "Opend Conference Twitter",
-                               customAttributes: [
-                                "handle": twitterHandle])
+        LoggingHelper.register(event: .openConferenceTwitter, info: ["handle": twitterHandle])
 
         let twitterUrl = "https://twitter.com/\(twitterHandle)"
         if let url = URL(string: twitterUrl) {

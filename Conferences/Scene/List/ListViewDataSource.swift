@@ -51,7 +51,7 @@ extension ListViewDataSource: NSTableViewDataSource, NSTableViewDelegate {
     }
 
     fileprivate struct Metrics {
-        static let headerRowHeight: CGFloat = 164
+        static let headerRowHeight: CGFloat = 232
         static let sessionRowHeight: CGFloat = 64
     }
 
@@ -115,15 +115,11 @@ extension ListViewDataSource: NSTableViewDataSource, NSTableViewDelegate {
     }
 
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        guard let model = talks[row] as? ConferenceModel else {
+        if let _ = talks[row] as? TalkModel {
             return Metrics.sessionRowHeight
+        } else {
+            return Metrics.headerRowHeight
         }
-
-        let cellForSize = TitleTableCellView(frame: .zero)
-        cellForSize.configureView(with: model)
-
-        return cellForSize.fittingSize.height + 50
-
     }
 
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
