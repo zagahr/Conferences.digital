@@ -7,10 +7,9 @@
 //
 
 import Cocoa
-import Crashlytics
 
 final class TitleBarViewController: NSViewController {
-    lazy var filterView = TagFilterViewController()
+    private lazy var filterView = TagFilterViewController()
 
     private lazy var searchBar: NSSearchField = {
         let v = NSSearchField()
@@ -26,7 +25,7 @@ final class TitleBarViewController: NSViewController {
         return v
     }()
 
-    lazy var clearButton: NSButton = {
+    private lazy var clearButton: NSButton = {
         let b = NSButton(title: "Clear", target: TagSyncService.shared, action: #selector(TagSyncService.shared.clear))
         b.alphaValue = 0
 
@@ -93,7 +92,7 @@ final class TitleBarViewController: NSViewController {
         }
     }
 
-    @objc func didSearch() {
+    @objc private func didSearch() {
         let searchTerm = searchBar.stringValue
 
         guard !searchTerm.replacingOccurrences(of: " ", with: "").isEmpty else {

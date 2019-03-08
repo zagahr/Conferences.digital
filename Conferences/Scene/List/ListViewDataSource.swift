@@ -81,12 +81,12 @@ extension ListViewDataSource: NSTableViewDataSource, NSTableViewDelegate {
         }
     }
 
-    private func cellForSessionViewModel(_ tableView: NSTableView, at row: Int) -> SessionCellView? {
+    private func cellForSessionViewModel(_ tableView: NSTableView, at row: Int) -> TalkCellView? {
 
-        var cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: Constants.sessionCellIdentifier), owner: tableView) as? SessionCellView
+        var cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: Constants.sessionCellIdentifier), owner: tableView) as? TalkCellView
 
         if cell == nil {
-            cell = SessionCellView(frame: .zero)
+            cell = TalkCellView(frame: .zero)
             cell?.identifier = NSUserInterfaceItemIdentifier(rawValue: Constants.sessionCellIdentifier)
         }
 

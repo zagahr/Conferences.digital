@@ -11,7 +11,7 @@ import ConferencesCore
 
 final class AppCoordinator {
     var windowController: MainWindowController
-    var mainCoordinator: MainCoordinator
+    private var mainCoordinator: MainCoordinator
 
     init(windowController: MainWindowController) {
         mainCoordinator = MainCoordinator()

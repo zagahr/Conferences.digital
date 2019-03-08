@@ -1,4 +1,5 @@
 //
+//  TalkCellView
 //  Conferences
 //
 //  Created by Timon Blask on 12/02/19.
@@ -7,7 +8,7 @@
 
 import Cocoa
 
-final class SessionCellView: NSTableCellView {
+final class TalkCellView: NSTableCellView {
     private weak var imageDownloadOperation: Operation?
 
     override init(frame frameRect: NSRect) {
@@ -199,6 +200,4 @@ final class SessionCellView: NSTableCellView {
             self?.thumbnailImageView.image = thumb
         }
     }
-
-
 }

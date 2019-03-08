@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import Crashlytics
 
 final class WelcomeView: NSView {
 

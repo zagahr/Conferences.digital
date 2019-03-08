@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import Crashlytics
 
 final class MainCoordinator {
     var rootViewController: MainViewController
-    var splitViewCoordinator: SplitViewCoordinator
-    var talkService: TalkService
+    private var splitViewCoordinator: SplitViewCoordinator
+    private var talkService: TalkService
+
     static var keyEventsActive: Bool = false
 
     init() {

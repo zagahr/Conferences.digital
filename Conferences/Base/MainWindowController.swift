@@ -9,8 +9,6 @@
 import Cocoa
 
 final class MainWindowController: NSWindowController {
-    var didInitialResize = false
-
     override var windowNibName: NSNib.Name? {
         return NSNib.Name("")
     }
@@ -36,7 +34,8 @@ final class MainWindowController: NSWindowController {
 
         self.window = window
 
-        if UserDefaults.standard.bool(forKey: "signup") == false {
+        if UserDefaults.standard.bool(forKey: "initialSize") == false {
+            UserDefaults.standard.setValue(true, forKey: "initialSize")
             window.setFrame(MainWindowController.defaultRect, display: true)
             window.saveFrame(usingName: .init("main"))
         } else {

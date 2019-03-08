@@ -58,7 +58,7 @@
 		B95DC5D02205CD390044A004 /* PUIRemoteCommandCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5AC2205CD370044A004 /* PUIRemoteCommandCoordinator.swift */; };
 		B95DC5D12205CD390044A004 /* PUINowPlayingInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5AD2205CD370044A004 /* PUINowPlayingInfoCoordinator.swift */; };
 		B95DC5D22205CD390044A004 /* PUINowPlayingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5AE2205CD370044A004 /* PUINowPlayingInfo.swift */; };
-		B95DC5D82205CF550044A004 /* SessionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5D72205CF550044A004 /* SessionCellView.swift */; };
+		B95DC5D82205CF550044A004 /* TalkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5D72205CF550044A004 /* TalkCellView.swift */; };
 		B95DC5DA2205CF620044A004 /* TitleTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5D92205CF610044A004 /* TitleTableCellView.swift */; };
 		B96EBBD4222418DB00696BC2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96EBBD3222418DB00696BC2 /* WelcomeView.swift */; };
 		B96EBBD72225737100696BC2 /* YoutubeWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96EBBD62225737100696BC2 /* YoutubeWebView.swift */; };
@@ -194,7 +194,7 @@
 		B95DC5AC2205CD370044A004 /* PUIRemoteCommandCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PUIRemoteCommandCoordinator.swift; sourceTree = "<group>"; };
 		B95DC5AD2205CD370044A004 /* PUINowPlayingInfoCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PUINowPlayingInfoCoordinator.swift; sourceTree = "<group>"; };
 		B95DC5AE2205CD370044A004 /* PUINowPlayingInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PUINowPlayingInfo.swift; sourceTree = "<group>"; };
-		B95DC5D72205CF550044A004 /* SessionCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionCellView.swift; sourceTree = "<group>"; };
+		B95DC5D72205CF550044A004 /* TalkCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkCellView.swift; sourceTree = "<group>"; };
 		B95DC5D92205CF610044A004 /* TitleTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableCellView.swift; sourceTree = "<group>"; };
 		B96EBBD3222418DB00696BC2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B96EBBD62225737100696BC2 /* YoutubeWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeWebView.swift; sourceTree = "<group>"; };
@@ -473,7 +473,7 @@
 				B95DC5722205CBED0044A004 /* ListViewController.swift */,
 				B9F7F7442205F785000EEB94 /* TrackColorView.swift */,
 				B981892722146EC400FE8276 /* ListViewDataSource.swift */,
-				B95DC5D72205CF550044A004 /* SessionCellView.swift */,
+				B95DC5D72205CF550044A004 /* TalkCellView.swift */,
 				B9BD5B04220B3A33004CA17C /* ConferenceView.swift */,
 				B9F7F7402205EF84000EEB94 /* WWDCProgressIndicator.swift */,
 				B95DC5D92205CF610044A004 /* TitleTableCellView.swift */,
@@ -879,7 +879,7 @@
 				B988E247222AAA1D00C9E45A /* ConferenceModel.swift in Sources */,
 				B95DC5C82205CD390044A004 /* PUIButton.swift in Sources */,
 				B9F7F74B2205FFBC000EEB94 /* VideoPlayerViewController.swift in Sources */,
-				B95DC5D82205CF550044A004 /* SessionCellView.swift in Sources */,
+				B95DC5D82205CF550044A004 /* TalkCellView.swift in Sources */,
 				B988E24D222AAA1D00C9E45A /* TagSyncService.swift in Sources */,
 				B981892222144DC300FE8276 /* MainCoordinator.swift in Sources */,
 				B981892822146EC400FE8276 /* ListViewDataSource.swift in Sources */,

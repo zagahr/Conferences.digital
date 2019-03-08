@@ -8,11 +8,10 @@
 
 import Foundation
 import WebKit
-import Crashlytics
 
 final class SplitViewCoordinator {
-    let rootViewController: SplitViewController
-    var currentPlayer: Playable?
+    private let rootViewController: SplitViewController
+    private var currentPlayer: Playable?
     private var selectedTalk: TalkModel?
 
     lazy var listDataDelegate: ListViewDataSource = {
