@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		3216AB3A8DC00FF714F567A6 /* Pods_ConferencesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03C2F4D8EDA3DFD0EDF3365A /* Pods_ConferencesTests.framework */; };
 		78FF34BC3CBB0ED53BDA1E73 /* Pods_ConferenceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8AA5F71D04672D12DE5FAAE /* Pods_ConferenceTests.framework */; };
-		B90D2BCB222AE90100A7B591 /* ConferencesCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B90D2BC9222AE8F000A7B591 /* ConferencesCore.framework */; };
-		B90D2BCC222AE90100A7B591 /* ConferencesCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B90D2BC9222AE8F000A7B591 /* ConferencesCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B915936D220F079300599C4E /* ConferencesAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B915936C220F079300599C4E /* ConferencesAlert.swift */; };
 		B920CD5A22120BB000C6C2AD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920CD5922120BB000C6C2AD /* LoadingView.swift */; };
 		B920CD5C2212CB7500C6C2AD /* AutoLayoutTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B920CD5B2212CB7500C6C2AD /* AutoLayoutTextField.swift */; };
+		B945EDE9223122FA0023D207 /* LoggingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B945EDE8223122FA0023D207 /* LoggingHelper.swift */; };
+		B945EDF022312BDB0023D207 /* ConferencesCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B945EDEE22312BD50023D207 /* ConferencesCore.framework */; };
+		B945EDF122312BDB0023D207 /* ConferencesCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B945EDEE22312BD50023D207 /* ConferencesCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B95DC5502205B42E0044A004 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95DC54F2205B42E0044A004 /* AppCoordinator.swift */; };
 		B95DC5522205B4410044A004 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5512205B4410044A004 /* MainWindowController.swift */; };
 		B95DC5572205B5410044A004 /* TitleBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95DC5562205B5410044A004 /* TitleBarViewController.swift */; };
@@ -64,8 +65,6 @@
 		B97E6B5422083EAA00ECCE81 /* TagFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97E6B5322083EAA00ECCE81 /* TagFilterViewController.swift */; };
 		B97E6B5622086CCE00ECCE81 /* NSColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97E6B5522086CCE00ECCE81 /* NSColor+hex.swift */; };
 		B97E6B5822087E8300ECCE81 /* SpeakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97E6B5722087E8300ECCE81 /* SpeakerView.swift */; };
-		B981891E221440C900FE8276 /* Conferences-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = B981891D221440C900FE8276 /* Conferences-Debug.plist */; };
-		B98189202214411100FE8276 /* Conferences-Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = B981891F2214411100FE8276 /* Conferences-Release.plist */; };
 		B981892222144DC300FE8276 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981892122144DC300FE8276 /* MainCoordinator.swift */; };
 		B981892422144DE500FE8276 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981892322144DE500FE8276 /* MainViewController.swift */; };
 		B981892822146EC400FE8276 /* ListViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981892722146EC400FE8276 /* ListViewDataSource.swift */; };
@@ -80,13 +79,11 @@
 		B988E23F222AAA1D00C9E45A /* ImageDownloadCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E225222AAA1C00C9E45A /* ImageDownloadCenter.swift */; };
 		B988E241222AAA1D00C9E45A /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E228222AAA1C00C9E45A /* Error.swift */; };
 		B988E242222AAA1D00C9E45A /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E229222AAA1C00C9E45A /* APIClient.swift */; };
-		B988E243222AAA1D00C9E45A /* APIClient+Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E22A222AAA1C00C9E45A /* APIClient+Speaker.swift */; };
 		B988E244222AAA1D00C9E45A /* OrganisatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E22C222AAA1C00C9E45A /* OrganisatorModel.swift */; };
 		B988E245222AAA1D00C9E45A /* VideoSourceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E22D222AAA1C00C9E45A /* VideoSourceModel.swift */; };
 		B988E246222AAA1D00C9E45A /* TalkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E22E222AAA1C00C9E45A /* TalkModel.swift */; };
 		B988E247222AAA1D00C9E45A /* ConferenceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E22F222AAA1C00C9E45A /* ConferenceModel.swift */; };
 		B988E248222AAA1D00C9E45A /* SpeakerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E230222AAA1C00C9E45A /* SpeakerModel.swift */; };
-		B988E24A222AAA1D00C9E45A /* APIClient+Talk.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E232222AAA1C00C9E45A /* APIClient+Talk.swift */; };
 		B988E24B222AAA1D00C9E45A /* APIClient+Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E233222AAA1C00C9E45A /* APIClient+Conference.swift */; };
 		B988E24C222AAA1D00C9E45A /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E235222AAA1C00C9E45A /* TagModel.swift */; };
 		B988E24D222AAA1D00C9E45A /* TagSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B988E236222AAA1C00C9E45A /* TagSyncService.swift */; };
@@ -129,7 +126,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B90D2BCC222AE90100A7B591 /* ConferencesCore.framework in Embed Frameworks */,
+				B945EDF122312BDB0023D207 /* ConferencesCore.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,10 +144,11 @@
 		999233AAD6A5388F879ADF03 /* Pods_Conferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Conferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A446D6882E7AD7EFC1AF7B1E /* Pods-ConferencesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConferencesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConferencesTests/Pods-ConferencesTests.release.xcconfig"; sourceTree = "<group>"; };
 		A8AA5F71D04672D12DE5FAAE /* Pods_ConferenceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConferenceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B90D2BC9222AE8F000A7B591 /* ConferencesCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ConferencesCore.framework; sourceTree = "<group>"; };
 		B915936C220F079300599C4E /* ConferencesAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesAlert.swift; sourceTree = "<group>"; };
 		B920CD5922120BB000C6C2AD /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		B920CD5B2212CB7500C6C2AD /* AutoLayoutTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayoutTextField.swift; sourceTree = "<group>"; };
+		B945EDE8223122FA0023D207 /* LoggingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingHelper.swift; sourceTree = "<group>"; };
+		B945EDEE22312BD50023D207 /* ConferencesCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ConferencesCore.framework; sourceTree = "<group>"; };
 		B95DC54F2205B42E0044A004 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		B95DC5512205B4410044A004 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		B95DC5562205B5410044A004 /* TitleBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarViewController.swift; sourceTree = "<group>"; };
@@ -203,8 +201,6 @@
 		B97E6B5322083EAA00ECCE81 /* TagFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFilterViewController.swift; sourceTree = "<group>"; };
 		B97E6B5522086CCE00ECCE81 /* NSColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSColor+hex.swift"; sourceTree = "<group>"; };
 		B97E6B5722087E8300ECCE81 /* SpeakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerView.swift; sourceTree = "<group>"; };
-		B981891D221440C900FE8276 /* Conferences-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Conferences-Debug.plist"; sourceTree = "<group>"; };
-		B981891F2214411100FE8276 /* Conferences-Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Conferences-Release.plist"; sourceTree = "<group>"; };
 		B981892122144DC300FE8276 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		B981892322144DE500FE8276 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B981892722146EC400FE8276 /* ListViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewDataSource.swift; sourceTree = "<group>"; };
@@ -219,13 +215,11 @@
 		B988E225222AAA1C00C9E45A /* ImageDownloadCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadCenter.swift; sourceTree = "<group>"; };
 		B988E228222AAA1C00C9E45A /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		B988E229222AAA1C00C9E45A /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		B988E22A222AAA1C00C9E45A /* APIClient+Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Speaker.swift"; sourceTree = "<group>"; };
 		B988E22C222AAA1C00C9E45A /* OrganisatorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganisatorModel.swift; sourceTree = "<group>"; };
 		B988E22D222AAA1C00C9E45A /* VideoSourceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoSourceModel.swift; sourceTree = "<group>"; };
 		B988E22E222AAA1C00C9E45A /* TalkModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkModel.swift; sourceTree = "<group>"; };
 		B988E22F222AAA1C00C9E45A /* ConferenceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceModel.swift; sourceTree = "<group>"; };
 		B988E230222AAA1C00C9E45A /* SpeakerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerModel.swift; sourceTree = "<group>"; };
-		B988E232222AAA1C00C9E45A /* APIClient+Talk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Talk.swift"; sourceTree = "<group>"; };
 		B988E233222AAA1C00C9E45A /* APIClient+Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Conference.swift"; sourceTree = "<group>"; };
 		B988E235222AAA1C00C9E45A /* TagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		B988E236222AAA1C00C9E45A /* TagSyncService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSyncService.swift; sourceTree = "<group>"; };
@@ -261,7 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B90D2BCB222AE90100A7B591 /* ConferencesCore.framework in Frameworks */,
+				B945EDF022312BDB0023D207 /* ConferencesCore.framework in Frameworks */,
 				B9A57FE4220EE6AD0052E8DC /* PIP.framework in Frameworks */,
 				BAAA808B4AEC3B23772E1C34 /* Pods_Conferences.framework in Frameworks */,
 			);
@@ -501,8 +495,6 @@
 		B961F8FF220E0BFB00ABE417 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				B981891D221440C900FE8276 /* Conferences-Debug.plist */,
-				B981891F2214411100FE8276 /* Conferences-Release.plist */,
 				B97E6B5522086CCE00ECCE81 /* NSColor+hex.swift */,
 				B95DC56B2205BF720044A004 /* NSColor+Extension.swift */,
 				B9F7F7462205F79D000EEB94 /* Assets.xcassets */,
@@ -535,12 +527,13 @@
 		B988E21C222AAA1C00C9E45A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B90D2BC9222AE8F000A7B591 /* ConferencesCore.framework */,
+				B945EDEE22312BD50023D207 /* ConferencesCore.framework */,
 				B988E21D222AAA1C00C9E45A /* VideoFetcher */,
 				B988E220222AAA1C00C9E45A /* Storage */,
 				B988E226222AAA1C00C9E45A /* API */,
 				B988E234222AAA1C00C9E45A /* Tag */,
 				B988E238222AAA1C00C9E45A /* TalkService.swift */,
+				B945EDE8223122FA0023D207 /* LoggingHelper.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -572,10 +565,8 @@
 			children = (
 				B988E228222AAA1C00C9E45A /* Error.swift */,
 				B988E229222AAA1C00C9E45A /* APIClient.swift */,
-				B988E22A222AAA1C00C9E45A /* APIClient+Speaker.swift */,
-				B988E22B222AAA1C00C9E45A /* Models */,
-				B988E232222AAA1C00C9E45A /* APIClient+Talk.swift */,
 				B988E233222AAA1C00C9E45A /* APIClient+Conference.swift */,
+				B988E22B222AAA1C00C9E45A /* Models */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -749,11 +740,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B98189202214411100FE8276 /* Conferences-Release.plist in Resources */,
 				B95DC5B72205CD380044A004 /* Media.xcassets in Resources */,
 				B95DC5B82205CD380044A004 /* WhiteSpinner.car in Resources */,
 				B9F48A952201B6B700C9DAF6 /* Main.storyboard in Resources */,
-				B981891E221440C900FE8276 /* Conferences-Debug.plist in Resources */,
 				B9F7F7472205F79F000EEB94 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -854,6 +843,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"\"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)\"",
 			);
 			name = Fabric;
 			outputFileListPaths = (
@@ -906,7 +896,6 @@
 				B9BD5B05220B3A34004CA17C /* ConferenceView.swift in Sources */,
 				B95DC5CC2205CD390044A004 /* PUIExternalPlaybackConsumer.swift in Sources */,
 				B97E6B5422083EAA00ECCE81 /* TagFilterViewController.swift in Sources */,
-				B988E24A222AAA1D00C9E45A /* APIClient+Talk.swift in Sources */,
 				B988E24C222AAA1D00C9E45A /* TagModel.swift in Sources */,
 				B988E24F222AAA1D00C9E45A /* TalkService.swift in Sources */,
 				B95DC5BC2205CD380044A004 /* PUIExternalPlaybackStatusViewController.swift in Sources */,
@@ -914,7 +903,6 @@
 				B95DC5B12205CD380044A004 /* NSWindow+Snapshot.swift in Sources */,
 				B981892E2214A83600FE8276 /* TagView.swift in Sources */,
 				B95DC5C12205CD380044A004 /* PUITimelineView.swift in Sources */,
-				B988E243222AAA1D00C9E45A /* APIClient+Speaker.swift in Sources */,
 				B95DC5AF2205CD380044A004 /* PUITouchBarItems.swift in Sources */,
 				B95DC5D02205CD390044A004 /* PUIRemoteCommandCoordinator.swift in Sources */,
 				B95DC5B52205CD380044A004 /* AVAsset+AsyncHelpers.swift in Sources */,
@@ -943,6 +931,7 @@
 				B95DC5C02205CD380044A004 /* PUIPlayerWindow.swift in Sources */,
 				B95DC5CB2205CD390044A004 /* PUITimelineDelegate.swift in Sources */,
 				B95DC5D12205CD390044A004 /* PUINowPlayingInfoCoordinator.swift in Sources */,
+				B945EDE9223122FA0023D207 /* LoggingHelper.swift in Sources */,
 				B95DC5DA2205CF620044A004 /* TitleTableCellView.swift in Sources */,
 				B9F7F7352205E7FF000EEB94 /* VibrantButton.swift in Sources */,
 				B95DC5C92205CD390044A004 /* PUIAnnotationWindow.swift in Sources */,
