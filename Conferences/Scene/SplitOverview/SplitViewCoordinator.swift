@@ -8,11 +8,10 @@
 
 import Foundation
 import WebKit
-import Crashlytics
 
 final class SplitViewCoordinator {
-    let rootViewController: SplitViewController
-    var currentPlayer: Playable?
+    private let rootViewController: SplitViewController
+    private var currentPlayer: Playable?
     private var selectedTalk: TalkModel?
 
     lazy var listDataDelegate: ListViewDataSource = {
@@ -53,11 +52,7 @@ extension SplitViewCoordinator: ShelfViewControllerDelegate {
 
         currentPlayer?.removeFromParent()
 
-        Answers.logCustomEvent(withName: "Played Talk",
-                                       customAttributes: [
-                                        "videoId": String(nowPlayingTalk.id),
-                                        "source": nowPlayingTalk.source.rawValue
-            ])
+        LoggingHelper.register(event: .playTalk, info: ["videoId": String(nowPlayingTalk.id), "source": nowPlayingTalk.source.rawValue])
 
         switch nowPlayingTalk.source {
             case .vimeo:

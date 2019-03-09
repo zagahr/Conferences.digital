@@ -48,7 +48,7 @@ final class TagView: NSView {
         return v
     }()
 
-    let tagCornerRadius: CGFloat = 5.0
+    private let tagCornerRadius: CGFloat = 5.0
 
     private lazy var stackView: NSStackView = {
         let v = NSStackView(views: [self.label, self.cancelImage])
@@ -60,7 +60,7 @@ final class TagView: NSView {
         return v
     }()
 
-    func configureView() {
+    private func configureView() {
         wantsLayer = true
 
         addSubview(stackView)
@@ -70,7 +70,7 @@ final class TagView: NSView {
         layer?.borderWidth = 1.8
     }
 
-    func refreshView() {
+    private func refreshView() {
         let backgroundColor: NSColor = tagModel.isActive ? .inactiveColor : .elementBackground
         let textColor: NSColor = tagModel.isActive ? .elementBackground : .inactiveColor
 

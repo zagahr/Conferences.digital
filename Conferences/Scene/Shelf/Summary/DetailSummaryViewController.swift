@@ -101,7 +101,7 @@ class DetailSummaryViewController: NSViewController {
 
         stackView.edgesToSuperview(insets: .init(top: 20, left: 20, bottom: 20, right: 20))
 
-        stackView.height(min: 220, max: 675, priority: .required, isActive: true)
+        stackView.height(min: 220, max: 675, priority: .defaultHigh, isActive: true)
     }
 
     func configureView(with talk: TalkModel) {
@@ -113,6 +113,5 @@ class DetailSummaryViewController: NSViewController {
         speakerView.configureView(with: talk.speaker)
         actionView.configureView(with: talk)
     }
-    
 
 }

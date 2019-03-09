@@ -55,13 +55,14 @@ default_platform(:mac)
     desc "Deploy new version to Sparkle"
     lane :deploy do
       sh("eval $(docker-machine env conference-server)")
-      sh("docker cp ../../updates conference-server_server_1:/app/Public/")
+      sh("mv ../../updates/*.zip ../../updates/Conferences.zip")
+      sh("docker cp ../../updates conferences-server_server_1:/app/Public/")
     end
 
     desc "Build new release version"
     lane :build  do
       increment_build_number
-      build_app(scheme: "Conferences-Release",
+      build_app(scheme: "Conferences-Server",
             configuration: "Release",
             workspace: "Conferences.xcworkspace",
             output_directory: "Releases",

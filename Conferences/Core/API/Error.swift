@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum APIError: Error {
     case http(Error)
     case adapter
@@ -22,6 +21,32 @@ enum APIError: Error {
             return "Unable to process the data returned by the server"
         case .unknown:
             return "An unknown networking error occurred"
+        }
+    }
+
+    var httpError: Error? {
+        switch self {
+        case .http(let error):
+            return error
+        default:
+            return nil
+        }
+    }
+}
+
+extension Error {
+    var code: Int { return (self as NSError).code }
+    var domain: String { return (self as NSError).domain }
+
+    var pushToCrashlytics: Bool {
+        if let apiError = self as? APIError, let httpError = apiError.httpError {
+            if httpError.code != NSURLErrorNotConnectedToInternet {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return true
         }
     }
 }

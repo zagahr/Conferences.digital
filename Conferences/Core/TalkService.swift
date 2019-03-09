@@ -15,6 +15,7 @@ protocol TalkServiceDelegate: class {
 
 final class TalkService {
     weak var delegate: TalkServiceDelegate?
+    private let apiClient = APIClient()
 
     private var talks = [Codable]()
     private var backup = [Codable]()
@@ -28,25 +29,28 @@ final class TalkService {
     }
 
     func fetchData() {
-        APIClient.Conference.all { (response) in
-            switch response {
-            case .success(let models):
-                var result = [Codable]()
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            self?.apiClient.send(resource: ConferenceResource.all, completionHandler: { [weak self] (response: Result<[ConferenceModel], APIError>) in
+                switch response {
+                case .success(let models):
+                    var result = [Codable]()
 
-                models.forEach {
-                    result.append($0)
-                    result.append(contentsOf: $0.talks)
+                    models.forEach {
+                        result.append($0)
+                        result.append(contentsOf: $0.talks)
+                    }
+
+                    self?.talks = result
+                    self?.backup = result
+
+                    DispatchQueue.main.async {
+                        self?.delegate?.didFetch(result)
+                    }
+
+                case .failure(let error):
+                    DispatchQueue.main.async { self?.delegate?.fetchFailed(with: error) }
                 }
-
-                self.talks = result
-                self.backup = result
-
-                DispatchQueue.main.async {
-                    self.delegate?.didFetch(result)
-                }
-            case .failure(let error):
-                DispatchQueue.main.async { self.delegate?.fetchFailed(with: error) }
-            }
+            })
         }
     }
 

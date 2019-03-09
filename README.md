@@ -1,9 +1,9 @@
 <p align="center">
-    <img alt="Conferences.digital" src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/github_banner.png" width="60%">
+    <img alt="Conferences.digital" src=".github/github_banner.png" width="80%">
 </p>
 <p align="center">
 <a href="">
-        <img src="https://img.shields.io/badge/Language-Swift-yellow.svg"
+        <img src="https://img.shields.io/badge/language-Swift-yellow.svg"
              alt="Language: Swift">
     </a>
     <a href="">
@@ -16,20 +16,13 @@
     </a>
 </p>
 
-<br>
-<br>
-
-`Conferences.digital` is the best way to watch the latest and greatest videos from your favourite developer conferences for free on your Mac. Either search specifically for conferences, talks, speakers or topics or simply browse through the catalog - you can add talks to your watchlist to save for later, favourite or continue watching where you left off.
-
-<br>
+**Conferences.digital** is the best way to watch the latest and greatest videos from your favourite developer conferences for free on your Mac. Either search specifically for conferences, talks, speakers or topics or simply browse through the catalog - you can add talks to your watchlist to save for later, favourite or continue watching where you left off.
 
 As soon as new conferences/talks have been added it will be announced on [twitter](https://twitter.com/zagahr).
+
+**Download the latest release [here](https://github.com/zagahr/Conferences.digital/releases/download/0.0.1-alpha20/Conferences_v0.0.1-alpha20.zip).**
+
 <br>
-<br>
-
-**Download the latest release [here](https://conferences.digital/updates/Conferences.zip).**
-
-
 
 ## Overview
 <p align="center">
@@ -41,20 +34,16 @@ As soon as new conferences/talks have been added it will be announced on [twitte
 - [x] Updates via Sparkle 
 - [x] Watchlist 
 - [x] Continue watching / Track progress
-- [ ] Move updates to GitHub-Releases
 - [ ] Touch Bar support
-- [ ] Website 
-- [ ] Marzipan
 
 <br>
 
 ## Installation
-
 Some of you will see the warning in the screenshot below about the app "can't be opened because it is from an unidentified developer" when you first try to run it.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/damaged_error.png" alt="damaged error" width="40%">
-    <img src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/identity_error.png" alt="identity error" width="40%">
+    <img src=".github/damaged_error.png" alt="damaged error" width="40%">
+    <img src=".github/identity_error.png" alt="identity error" width="40%">
 </p>
 
 This is because I am not registered with Apple as part of their developer program. This is the first MacOS app that I've ever built, and I don't plan to release it in the Mac App Store so I don't want to pay the fees to register with Apple.
@@ -78,7 +67,7 @@ If you encounter any bugs please create an issue [here](https://github.com/zagah
 <br>
 
 ## Requirements
-`Conferences.digital` is written in Swift 5. Compatible with macOS 10.12.2+ <br>
+**Conferences.digital** is written in Swift 5. Compatible with macOS 10.12.2+ <br>
 
 <br>
 
@@ -88,4 +77,4 @@ Timon Blask - [@zagahr](https://twitter.com/zagahr)
 <br>
 
 ## License
-`Conferences.digital` is available under the BSD-2-Clause license.
+**Conferences.digital** is available under the BSD-2-Clause license.

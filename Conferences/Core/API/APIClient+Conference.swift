@@ -9,14 +9,6 @@
 import Foundation
 import ConferencesCore
 
-extension APIClient {
-    public struct Conference {
-        static func all(completionHandler: @escaping (Result<[ConferenceModel], APIError>) -> Void) {
-            shared.list(recource: ConferenceResource.all, completionHandler: completionHandler)
-        }
-    }
-}
-
 enum ConferenceResource: Resource {
     case all
     case byOrganisator(Int)

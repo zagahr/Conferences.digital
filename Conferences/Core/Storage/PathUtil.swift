@@ -13,7 +13,7 @@ final class PathUtil {
     /// The WWDCUseDebugStorage flag can be used to force debug builds to use
     /// a separate storage from release builds
     static var shouldUseDebugStorage: Bool {
-        return UserDefaults.standard.bool(forKey: "WWDCUseDebugStorage")
+        return UserDefaults.standard.bool(forKey: "ConferencesUseDebugStorage")
     }
 
     enum AppSupportCreationError: Error {

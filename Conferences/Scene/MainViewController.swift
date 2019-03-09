@@ -11,14 +11,9 @@ import Cocoa
 final class MainViewController: NSViewController {
 
     lazy var loadingView = LoadingView()
-    lazy var titleBarViewController = TitleBarViewController()
     lazy var mainSplitViewController = SplitViewController()
 
-    lazy var welcomeView: WelcomeView = {
-        let v = WelcomeView()
-
-        return v
-    }()
+    private lazy var titleBarViewController = TitleBarViewController()
 
     override func loadView() {
         view = NSView()
@@ -35,11 +30,6 @@ final class MainViewController: NSViewController {
 
         view.addSubview(loadingView)
         loadingView.edgesToSuperview()
-    }
-
-    func showWelcomeView() {
-        view.addSubview(welcomeView)
-        welcomeView.edgesToSuperview()
     }
 }
 

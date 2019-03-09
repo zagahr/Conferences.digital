@@ -7,4 +7,11 @@
 <sparkle:minimumSystemVersion>10.12.2</sparkle:minimumSystemVersion>
 <enclosure url="https://github.com/zagahr/Conferences.digital/releases/download/0.0.1-alpha19/Conferences_v0.0.1-alpha19.zip" sparkle:version="19" sparkle:shortVersionString="0.0.1" length="19814647" type="application/octet-stream" sparkle:edSignature="mwQzV5Q5WwA8/qxfcvYQxxC5aCrtjRZBDrNrUtT9j9VDoTfF6dK8FS1tHATLhQmq+A7gWUqVEUdJMhsdI/ZjDA=="/>
 </item>
+<item>
+<title>0.0.1</title>
+<pubDate>Sat, 09 Mar 2019 12:27:30 +0000</pubDate>
+<sparkle:minimumSystemVersion>10.12.2</sparkle:minimumSystemVersion>
+<enclosure url="https://github.com/zagahr/Conferences.digital/releases/download/0.0.1-alpha20/Conferences_v0.0.1-alpha20.zip" sparkle:version="20" sparkle:shortVersionString="0.0.1" length="19813136" type="application/octet-stream" sparkle:edSignature="Qqv84t6Knx1BXO+wehmiUInAwC/ngZ4ooL+/7ebhDjKqYXqM5lFO6EM9nItaNHAt2a25dTM7pxOBteIZU2ADCg=="/>
+</item>
+
 </channel></rss>

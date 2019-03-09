@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import Crashlytics
 
 final class SpeakerView: NSView {
     private var speaker: SpeakerModel?
@@ -199,10 +198,7 @@ final class SpeakerView: NSView {
     @objc func openTwitter() {
         guard let twitterHandle = self.speaker?.twitter else { return }
 
-        Answers.logCustomEvent(withName: "Opend Speakers Twitter",
-                               customAttributes: [
-                                "speakerId": String(self.speaker!.id)])
-
+        LoggingHelper.register(event: .openSpeakerTwitter, info: ["speakerId": String(self.speaker!.id)])
 
         let twitterUrl = "https://twitter.com/\(twitterHandle)"
         if let url = URL(string: twitterUrl) {
@@ -213,9 +209,7 @@ final class SpeakerView: NSView {
     @objc func openGithub() {
         guard let githubHandle = self.speaker?.github else { return }
 
-        Answers.logCustomEvent(withName: "Opend Speakers GitHub",
-                               customAttributes: [
-                                "speakerId": String(self.speaker!.id)])
+        LoggingHelper.register(event: .openSpeakerGithub, info: ["speakerId": String(self.speaker!.id)])
 
         let githubUrl = "https://github.com/\(githubHandle)"
         if let url = URL(string: githubUrl) {

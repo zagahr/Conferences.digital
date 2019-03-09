@@ -38,10 +38,10 @@ class ShelfViewController: NSViewController {
 
     weak var delegate: ShelfViewControllerDelegate?
 
-    lazy var previewImage = AspectFillImageView()
-    lazy var playerContainer = NSView()
+    private lazy var previewImage = AspectFillImageView()
+    private lazy var playerContainer = NSView()
 
-    lazy var playButton: VibrantButton = {
+    private lazy var playButton: VibrantButton = {
         let b = VibrantButton(frame: .zero)
 
         b.title = "Play"

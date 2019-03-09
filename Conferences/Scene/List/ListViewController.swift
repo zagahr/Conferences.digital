@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import Crashlytics
 
 class ListViewController: NSViewController {
 
@@ -158,7 +157,7 @@ extension ListViewController: NSMenuItemValidation {
     }
 
     @objc private func tableViewMenuItemClicked(_ menuItem: NSMenuItem) {
-        Answers.logCustomEvent(withName: "Right click table", customAttributes: nil )
+        LoggingHelper.register(event: .rightClickonTable )
 
         var talks = [TalkModel]()
         guard let dataSource = tableView.dataSource as? ListViewDataSource else { return }

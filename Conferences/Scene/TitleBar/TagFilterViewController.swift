@@ -28,7 +28,7 @@ final class TagFilterViewController: NSViewController {
         scrollView.edgesToSuperview()
     }
 
-    lazy var scrollView: NSScrollView = {
+    private lazy var scrollView: NSScrollView = {
         let v = NSScrollView()
 
         v.focusRingType = .none
@@ -53,7 +53,7 @@ final class TagFilterViewController: NSViewController {
     }()
 
 
-    @objc func updateTags() {
+    @objc private func updateTags() {
         let tags = TagSyncService.shared.tags
 
         if let stackView = self.view.superview as? NSStackView,
