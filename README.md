@@ -20,7 +20,7 @@
 
 As soon as new conferences/talks have been added it will be announced on [twitter](https://twitter.com/zagahr).
 
-**Download the latest release [here](https://github.com/zagahr/Conferences.digital/releases/download/0.0.1-alpha19/Conferences_v0.0.1-alpha19.zip).**
+**Download the latest release [here](https://github.com/zagahr/Conferences.digital/releases/download/0.0.1-alpha20/Conferences_v0.0.1-alpha20.zip).**
 
 <br>
 
