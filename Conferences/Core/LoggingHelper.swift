@@ -33,7 +33,15 @@ final class LoggingHelper {
 
     static func register(error: Error, info: [String: Any]? = nil) {
         if error.pushToCrashlytics {
-            Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["message": error.localizedDescription])
+            if let apiError = error as? APIError {
+                if let httpError = apiError.httpError {
+                    Crashlytics.sharedInstance().recordError(httpError, withAdditionalUserInfo: ["message": error.localizedDescription])
+                } else {
+                    Crashlytics.sharedInstance().recordError(apiError, withAdditionalUserInfo: ["message": error.localizedDescription])
+                }
+            } else {
+                Crashlytics.sharedInstance().recordError(error, withAdditionalUserInfo: ["message": error.localizedDescription])
+            }
         }
     }
 

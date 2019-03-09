@@ -40,8 +40,8 @@ extension Error {
 
     var pushToCrashlytics: Bool {
         if let apiError = self as? APIError, let httpError = apiError.httpError {
-            if httpError.code == NSURLErrorNotConnectedToInternet {
-                return false
+            if httpError.code != NSURLErrorNotConnectedToInternet {
+                return true
             } else {
                 return false
             }
