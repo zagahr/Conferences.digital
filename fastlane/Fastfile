@@ -62,7 +62,7 @@ default_platform(:mac)
     desc "Build new release version"
     lane :build  do
       increment_build_number
-      build_app(scheme: "Conferences-Release",
+      build_app(scheme: "Conferences-Server",
             configuration: "Release",
             workspace: "Conferences.xcworkspace",
             output_directory: "Releases",
