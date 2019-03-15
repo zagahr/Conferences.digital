@@ -22,6 +22,10 @@ As soon as new conferences/talks have been added it will be announced on [twitte
 
 **Download the latest release [here](https://github.com/zagahr/Conferences.digital/releases/download/0.0.1-alpha20/Conferences_v0.0.1-alpha20.zip).**
 
+### Just one second of your time
+
+I am a junior iOS developer currently looking for opportunities to start my career in London/Dublin/SF. I'd be very grateful for any help/hints/tips you might have 🙂
+
 <br>
 
 ## Overview
