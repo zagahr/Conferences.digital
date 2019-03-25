@@ -16,6 +16,8 @@ final class SplitViewController: NSSplitViewController {
         vc.tableView.delegate = self.coordinateDelegate?.listDataDelegate
         vc.tableView.dataSource = self.coordinateDelegate?.listDataDelegate
 
+        self.coordinateDelegate?.listDataDelegate.filterTab = vc.filterTab
+
         return vc
     }()
 

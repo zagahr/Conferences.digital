@@ -16,7 +16,82 @@ protocol ListViewDataSourceDelegate: class {
 final class ListViewDataSource: NSObject {
     weak var delegate: ListViewDataSourceDelegate?
 
-    var talks: [Codable] = []
+    weak var filterTab: NSSegmentedControl?
+    
+    //var talks: [Codable] = []
+    private var allTalks: [Codable] = []
+    private var notWatchedTalks: [Codable] = []
+    private var watchedTalks: [Codable] = []
+    var talks: [Codable] {
+        get {
+            guard let t = self.filterTab else { return [] }
+            
+            switch t.selectedSegment {
+            // All
+            case 0: return self.allTalks
+            // Not viewed
+            case 1: return self.notWatchedTalks
+            // Viewed
+            case 2: return self.watchedTalks
+            default: return []
+            }
+        }
+        set {
+            allTalks = newValue
+            
+            buildLists()
+        }
+    }
+    
+    func buildLists() {
+        // Remove all the watched talks
+        var nw: [Codable] = self.allTalks.compactMap {
+            if let talk_Model = $0 as? TalkModel {
+                return talk_Model.watched ? nil : $0
+            }
+            else { return $0 }
+        }
+        
+        // After that, only include the conferences with any not watched talk
+        self.notWatchedTalks = []
+        for index in 0..<(nw.count) {
+            if let _ = nw[index] as? ConferenceModel {
+                if (index < nw.count-1) {
+                    if let _ = nw[index+1] as? ConferenceModel { }
+                    else {
+                        self.notWatchedTalks.append(nw[index])
+                    }
+                }
+            }
+            else {
+                self.notWatchedTalks.append(nw[index])
+            }
+        }
+        
+        // Remove all the not watched talks
+        var w: [Codable] = self.allTalks.compactMap {
+            if let talk_Model = $0 as? TalkModel {
+                return talk_Model.watched ? $0 : nil
+            }
+            else { return $0 }
+        }
+        
+        // After that, only include the conferences with any watched talk
+        self.watchedTalks = []
+        for index in 0..<(w.count) {
+            if let _ = w[index] as? ConferenceModel {
+                if (index < w.count-1) {
+                    if let _ = w[index+1] as? ConferenceModel { }
+                    else {
+                        self.watchedTalks.append(w[index])
+                    }
+                }
+            }
+            else {
+                self.watchedTalks.append(w[index])
+            }
+        }
+    }
 
     func isTalk(at row: Int) -> Bool {
         if let _ = talks[row] as? TalkModel {

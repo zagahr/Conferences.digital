@@ -8,8 +8,22 @@
 
 import Cocoa
 
+enum VideoFilter: String {
+    case all        = "All videos"
+    case notWatched = "Not watched"
+    case Watched    = "Watched"
+}
+
 class ListViewController: NSViewController {
 
+    lazy var filterTab: NSSegmentedControl = {
+        let ft = NSSegmentedControl(labels: [VideoFilter.all.rawValue, VideoFilter.notWatched.rawValue, VideoFilter.Watched.rawValue], trackingMode: .selectOne, target: self, action: #selector(filterTabAction))
+        
+        ft.selectedSegment = 0
+        
+        return ft
+    }()
+    
     lazy var tableView: NSTableView = {
         let v = NSTableView()
 
@@ -42,16 +56,30 @@ class ListViewController: NSViewController {
         return v
     }()
 
+    private lazy var stackView: NSStackView = {
+        let v = NSStackView(views: [self.filterTab, self.scrollView])
+        
+        v.orientation  = .vertical
+        v.alignment    = .centerX
+        v.distribution = .fill
+        v.spacing      = 10
+        
+        return v
+    }()
+
     override func loadView() {
         view = NSView()
          view.wantsLayer = true
 
-        view.addSubview(scrollView)
+        //view.addSubview(scrollView)
+        view.addSubview(stackView)
 
-        scrollView.edgesToSuperview()
+        stackView.edgesToSuperview(insets: .init(top: 30, left: 15, bottom: 15, right: 15))
+        //scrollView.edgesToSuperview()
         scrollView.width(min: 320, max: 675, priority: .defaultHigh, isActive: true)
 
         NotificationCenter.default.addObserver(self, selector: #selector(reloadActiveCell), name: .refreshActiveCell, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildLists), name: .buildLists, object: nil)
     }
 
     override func viewDidLoad() {
@@ -215,4 +243,18 @@ private extension NSMenuItem {
         }
     }
 
+}
+
+extension ListViewController {
+    
+    @objc func filterTabAction() {
+        NotificationCenter.default.post(.init(name: .refreshTableView))
+    }
+    
+    @objc func buildLists() {
+        guard let dataSource = tableView.dataSource as? ListViewDataSource else { return }
+        dataSource.buildLists()
+        tableView.reloadData()
+    }
+    
 }

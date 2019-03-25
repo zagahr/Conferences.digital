@@ -13,6 +13,7 @@ extension Notification.Name {
     static let refreshTagView = Notification.Name("RefreshTagViewNotifiaction")
     static let refreshTableView = Notification.Name("RefreshTableViewNotifiaction")
     static let refreshActiveCell = Notification.Name("RefreshActiveCellNotifiaction")
+    static let buildLists = Notification.Name("BuildListsNotifiaction")
 }
 
 final class TagSyncService {

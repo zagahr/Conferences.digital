@@ -79,6 +79,7 @@ final class ActionView: NSView {
 
         talk.watched.toggle()
 
+        NotificationCenter.default.post(Notification(name: .buildLists))
         NotificationCenter.default.post(Notification(name: .refreshActiveCell))
 
         var tag = TagModel(title: "Confinue watching", query: "realm_continue", isActive: false)
