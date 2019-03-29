@@ -61,6 +61,9 @@ To bypass Apple's restriction, right-click the app and select **"Open"** the fir
 <br>
 
 ## Contributing
+
+[Join the chat on Slack](https://join.slack.com/t/conferencesdigital/shared_invite/enQtNTc3MjEyNzE0NTYxLTU2NTgxOTI3YjBlN2JkZTA2ODAxMTQ0OWJlMDhmMjZmZWMzNTA1OTM3YjQ3YzRkZjZhZGEzNzdhN2M2ZjAxNDI)
+
 If you have any ideas how to improve the app or you wish yourself a new feature you can submit an pull request or create an issue [here](https://github.com/zagahr/Conferences.digital/issues).
 
 If you want to submit an pull request make sure you read the [contribution guidelines](CONTRIBUTING.md) first.
