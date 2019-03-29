@@ -58,6 +58,8 @@ This is because I am not registered with Apple as part of their developer progra
 
 To bypass Apple's restriction, right-click the app and select **"Open"** the first time you use it or open your System Preferences application, click on the Security & Privacy selection, and there will be an **"Open Anyway"** button you can click.
 
+If you have any other issues check out [#9](https://github.com/zagahr/Conferences.digital/issues/9).
+
 <br>
 
 ## Contributing
