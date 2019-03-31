@@ -63,8 +63,31 @@ final class TalkService {
         } else {
             var currentBatch = seachableBackup
             activeTags.forEach ({ (tag) in
-                currentBatch = currentBatch.filter { $0.searchString.contains(tag.query)}
+                
+                if (tag.title == TagSyncService.watchedTitle) {
+                    currentBatch = currentBatch.filter {
+                        if $0 is TalkModel { return ($0 as! TalkModel).watched }
+                        else if $0 is ConferenceModel { return true }
+                        else { return false }
+                    }
+                }
+                else if (tag.title == TagSyncService.notWatchedTitle) {
+                    currentBatch = currentBatch.filter {
+                        if $0 is TalkModel { return !($0 as! TalkModel).watched }
+                        else if $0 is ConferenceModel { return true }
+                        else { return false }
+                    }
+                }
+                else {
+                    currentBatch = currentBatch.filter {
+                        if $0 is TalkModel { return $0.searchString.contains(tag.query) }
+                        else if $0 is ConferenceModel { return true }
+                        else { return false }
+                    }
+                }
             })
+            
+            currentBatch = removeEmptyConferences(currentBatch)
 
             self.talks = currentBatch as! [Codable]
         }
@@ -72,5 +95,20 @@ final class TalkService {
         DispatchQueue.main.async {
             self.delegate?.didFetch(self.talks)
         }
+    }
+    
+    func removeEmptyConferences(_ list: [Searchable]) -> [Searchable] {
+        var newList: [Searchable] = []
+        
+        for i in 0..<list.count {
+            if let _ = list[i] as? ConferenceModel, i<(list.count-1), let _ = list[i+1] as? TalkModel {
+                newList.append(list[i])
+            }
+            else if let _ = list[i] as? TalkModel {
+                newList.append(list[i])
+            }
+        }
+        
+        return newList
     }
 }

@@ -18,6 +18,9 @@ extension Notification.Name {
 final class TagSyncService {
     public static let shared = TagSyncService()
     private var initalized = false
+    
+    static let watchedTitle: String    = "Watched"
+    static let notWatchedTitle: String = "Not watched"
 
     private var realmTags: [TagModel] {
         var realmTags: [TagModel] = []
@@ -41,9 +44,14 @@ final class TagSyncService {
         .init(title: "iOS"),
         .init(title: "macOS")
     ]
+    
+    private let watchedTags: [TagModel] = [
+        .init(title: watchedTitle),
+        .init(title: notWatchedTitle)
+    ]
 
     private var defaultTags: [TagModel] {
-        return [realmTags, contentTags].flatMap { $0 }
+        return [realmTags, watchedTags, contentTags].flatMap { $0 }
     }
 
     var tags: [TagModel] = []
