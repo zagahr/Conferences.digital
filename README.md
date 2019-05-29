@@ -46,6 +46,18 @@ I am a junior iOS developer currently looking for opportunities to start my care
 
 <br>
 
+## iOS app
+
+I was approached by a number of people asking if and whether an iOS version was available. Although I had designed the app thinking that the demand for a macOS app was greater than for an iOS app, I saw the opportunity to develop this project further and am currently in the progress of writing the iOS version.
+
+The repository of the iOS app can be found [here.](https://github.com/zagahr/Conferences-for-iOS)
+
+<p align="center">
+    <img alt="Screenshot" src="https://github.com/zagahr/Conferences-for-iOS/raw/develop/.github/github_banner.png" width="100%"></a>
+</p>
+
+<br>
+
 ## Installation
 Some of you will see the warning in the screenshot below about the app "can't be opened because it is from an unidentified developer" when you first try to run it.
 
