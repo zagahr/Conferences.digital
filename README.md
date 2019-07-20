@@ -26,12 +26,6 @@ As soon as new conferences/talks have been added it will be announced on [twitte
 <br>
 
 
-### Just one second of your time
-
-I am a junior iOS developer currently looking for opportunities to start my career in London/Dublin/SF. I'd be very grateful for any help/hints/tips you might have 🙂
-
-<br>
-
 ## Overview
 <p align="center">
     <img alt="Screenshot" src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/screenshot.png" width="100%"></a>
