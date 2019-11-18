@@ -63,8 +63,6 @@ class ListViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupContextualMenu()
     }
 
     override func viewDidAppear() {

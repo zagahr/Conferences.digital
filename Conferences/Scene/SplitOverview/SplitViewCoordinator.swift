@@ -34,6 +34,11 @@ final class SplitViewCoordinator {
 extension SplitViewCoordinator: ListViewDataSourceDelegate {
 
     func didSelectTalk(_ talk: TalkModel) {
+        
+        guard NSApp.windows.compactMap({ $0.contentViewController as? PIPViewController }).isEmpty  == true else {
+            return
+        }
+        
         currentPlayer?.removeFromParent()
         currentPlayer = nil
 

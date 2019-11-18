@@ -44,7 +44,7 @@ final class Storage {
         try! realm?.write {
             if object.active {
                 LoggingHelper.register(event: .addToWatchlist, info: ["videoId": String(object.id)])
-                realm?.add(object, update: true)
+                realm?.add(object, update: .all)
             } else {
                 if let objectToRemove = realm?.object(ofType: WatchlistModel.self, forPrimaryKey: object.id) {
                     LoggingHelper.register(event: .removeFromWatchlist, info: ["videoId": String(object.id)])
@@ -56,7 +56,7 @@ final class Storage {
 
     func trackProgress(object: ProgressModel) {
         try! realm?.write {
-            realm?.add(object, update: true)
+            realm?.add(object, update: .all)
         }
     }
 

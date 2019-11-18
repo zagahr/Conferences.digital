@@ -33,6 +33,7 @@ final class ActionView: NSView {
         b.isToggle = true
         b.image = #imageLiteral(resourceName: "watchlist")
         b.alternateImage = #imageLiteral(resourceName: "watchlist_filled")
+        b.isHidden = true
 
         return b
     }()
@@ -75,7 +76,9 @@ final class ActionView: NSView {
     }
 
     @objc func toggleWatch() {
-
+        guard var talk = talk else { return }
+        
+        talk.watched.toggle()
     }
 
     @objc func toggleWatchlist() {

@@ -23,8 +23,6 @@ class TitleTableCellView: NSTableCellView {
 
         if let superview = self.superview as? NSTableRowView {
             superview.isGroupRowStyle = false
-        //    superview.selectionHighlightStyle = .none
-       //     superview.backgroundColor = NSColor.panelBackground
         }
     }
 

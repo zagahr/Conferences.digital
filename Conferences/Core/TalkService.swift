@@ -8,6 +8,10 @@
 
 import Foundation
 
+extension NSNotification.Name {
+    public static let UserDidSearch = NSNotification.Name("UserDidSearchNotification")
+}
+
 protocol TalkServiceDelegate: class {
     func didFetch(_ talks: [Codable])
     func fetchFailed(with error: APIError)
@@ -17,9 +21,12 @@ final class TalkService {
     weak var delegate: TalkServiceDelegate?
     private let apiClient = APIClient()
 
-
     private var talks = [Codable]()
-
+    
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(filterTalks(_:)), name: Notification.Name.UserDidSearch, object: nil)
+    }
+    
     func fetchData() {
         DispatchQueue.global(qos: .background).async { [weak self] in
             self?.apiClient.send(resource: ConferenceResource.all, completionHandler: { [weak self] (response: Result<[ConferenceModel], APIError>) in
@@ -44,19 +51,26 @@ final class TalkService {
             })
         }
     }
-
-    func removeEmptyConferences(_ list: [Searchable]) -> [Searchable] {
-        var newList: [Searchable] = []
-        
-        for i in 0..<list.count {
-            if let _ = list[i] as? ConferenceModel, i<(list.count-1), let _ = list[i+1] as? TalkModel {
-                newList.append(list[i])
+    
+    @objc func filterTalks(_ notification: NSNotification) {
+        guard var searchTerm = notification.userInfo?["searchTerm"] as? String, !searchTerm.isEmpty else {
+            
+            DispatchQueue.main.async {
+                self.delegate?.didFetch(self.talks)
             }
-            else if let _ = list[i] as? TalkModel {
-                newList.append(list[i])
-            }
+            
+            return
         }
         
-        return newList
+        searchTerm = searchTerm.lowercased()
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "\n", with: "")
+        
+        var talks = self.talks.compactMap { $0 as? TalkModel }
+        talks = talks.filter { $0.searchString.contains(searchTerm) }
+        
+        DispatchQueue.main.async {
+            self.delegate?.didFetch(talks)
+        }
     }
 }

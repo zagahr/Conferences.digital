@@ -89,6 +89,10 @@ final class ListViewHeaderView: NSView {
         }
 
         LoggingHelper.register(event: .searchFor, info: ["term": searchTerm])
+        
+        let notification = Notification(name: Notification.Name.UserDidSearch, object: nil, userInfo: ["searchTerm": searchTerm])
+        
+        NotificationCenter.default.post(notification)
     }
 
 }

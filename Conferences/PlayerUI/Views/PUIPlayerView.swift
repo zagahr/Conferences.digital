@@ -424,7 +424,7 @@ public final class PUIPlayerView: NSView {
         if let player = player {
             teardown(player: player)
         }
-
+                
         stopMonitoringKeyEvents()
     }
 
@@ -1074,23 +1074,7 @@ public final class PUIPlayerView: NSView {
         subtitlesMenu = menu
     }
 
-    @objc fileprivate func didSelectSubtitleOption(_ sender: NSMenuItem) {
-        guard let subtitlesGroup = subtitlesGroup else { return }
-        guard let option = sender.representedObject as? AVMediaSelectionOption else { return }
-
-        // reset all item's states
-        sender.menu?.items.forEach({ $0.state = .on })
-
-        if option.extendedLanguageTag == player?.currentItem?.selectedMediaOption(in: subtitlesGroup)?.extendedLanguageTag {
-            player?.currentItem?.select(nil, in: subtitlesGroup)
-            sender.state = .off
-            return
-        }
-
-        player?.currentItem?.select(option, in: subtitlesGroup)
-
-        sender.state = .on
-    }
+    @objc fileprivate func didSelectSubtitleOption(_ sender: NSMenuItem) {}
 
     @IBAction func showSubtitlesMenu(_ sender: PUIButton) {
         subtitlesMenu?.popUp(positioning: nil, at: .zero, in: sender)
@@ -1229,7 +1213,7 @@ public final class PUIPlayerView: NSView {
         isInPictureInPictureMode = true
     }
 
-    fileprivate func exitPictureInPictureMode() {
+    func exitPictureInPictureMode() {
         if pictureContainer.presentingViewController == pipController {
             pipController?.dismiss(pictureContainer)
         }

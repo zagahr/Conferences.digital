@@ -12,7 +12,7 @@ class PUISlider: NSSlider {
 
     override class var cellClass: AnyClass? {
         set {
-            super.cellClass = cellClass
+            super.cellClass = newValue
         }
 
         get {

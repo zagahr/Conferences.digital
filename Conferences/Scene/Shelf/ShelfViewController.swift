@@ -95,6 +95,7 @@ class ShelfViewController: NSViewController {
 
     @objc private func play(_ sender: Any?) {
         guard let talk = talk else { return }
+        
         playerContainer.subviews.forEach {$0.removeFromSuperview() }
         self.delegate?.shelfViewControllerDidSelectPlay(self, talk: talk)
     }

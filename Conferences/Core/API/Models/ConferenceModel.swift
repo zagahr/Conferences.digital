@@ -22,7 +22,7 @@ struct ConferenceModel: Codable {
 
 extension ConferenceModel: Searchable {
     var searchString: String {
-        return "\(date) \(location)  \(name)\(organisator.name)".lowercased()
+        return "\(String(describing: date)) \(location)  \(name)\(organisator.name)".lowercased()
     }
 }
 
