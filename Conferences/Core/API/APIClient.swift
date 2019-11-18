@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ConferencesCore
 
 final class APIClient {
     func send<T: Codable>(resource: Resource, completionHandler: @escaping (Result<[T], APIError>) -> Void) {

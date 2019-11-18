@@ -10,6 +10,15 @@ import Cocoa
 
 @objc extension NSColor {
 
+    static var paneBackground: NSColor {
+        return NSColor(red: 0.16, green: 0.16, blue: 0.16, alpha:1.0)
+    }
+
+    static var windowBackground: NSColor {
+        return NSColor(red: 0.11, green: 0.11, blue: 0.11, alpha:1.0)
+    }
+
+
     static var primaryText: NSColor {
         return NSColor(calibratedWhite: 0.9, alpha: 1.0)
     }

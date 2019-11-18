@@ -34,7 +34,7 @@ final class DetailSplitViewController: NSSplitViewController {
         summaryController.view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         summaryController.view.setContentHuggingPriority(.defaultLow, for: .vertical)
 
-        splitView.setValue(NSColor.elementBackground, forKey: "dividerColor")
+        splitView.setValue(NSColor.black, forKey: "dividerColor")
         splitView.dividerStyle = .thick
         splitView.autosaveName = "DetailSplitView"
         splitView.isVertical = false

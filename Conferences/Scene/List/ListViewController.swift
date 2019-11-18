@@ -7,8 +7,16 @@
 //
 
 import Cocoa
+import TinyConstraints
 
 class ListViewController: NSViewController {
+
+    private lazy var headerView: NSView = {
+        let v = ListViewHeaderView()
+
+        v.height(100)
+        return v
+    }()
 
     lazy var tableView: NSTableView = {
         let v = NSTableView()
@@ -16,9 +24,8 @@ class ListViewController: NSViewController {
         v.allowsEmptySelection = false
         v.focusRingType = .none
         v.allowsMultipleSelection = true
-        v.backgroundColor = .clear
+        v.backgroundColor = NSColor.windowBackground
         v.headerView = nil
-        v.rowHeight = 64
         v.autoresizingMask = [.width, .height]
         v.selectionHighlightStyle = .regular
 
@@ -36,22 +43,22 @@ class ListViewController: NSViewController {
         v.documentView = self.tableView
         v.hasVerticalScroller = true
         v.hasHorizontalScroller = false
-        v.drawsBackground = true
-        v.backgroundColor = NSColor.panelBackground
+        v.hasVerticalScroller = false
 
         return v
     }()
 
     override func loadView() {
         view = NSView()
-         view.wantsLayer = true
 
+        view.addSubview(headerView)
         view.addSubview(scrollView)
 
-        scrollView.edgesToSuperview()
+        headerView.edgesToSuperview(excluding: .bottom)
+        scrollView.edgesToSuperview(excluding: .top)
+        scrollView.topToBottom(of: headerView)
+        
         scrollView.width(min: 320, max: 675, priority: .defaultHigh, isActive: true)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadActiveCell), name: .refreshActiveCell, object: nil)
     }
 
     override func viewDidLoad() {
@@ -68,8 +75,6 @@ class ListViewController: NSViewController {
 
     @objc func reloadActiveCell(_ notification: Notification) {
         tableView.reloadData(forRowIndexes: selectedAndClickedRowIndexes(), columnIndexes: IndexSet(integer: 0))
-
-        // reload detailVC
 
         guard let shouldReloadDetailVC = notification.object as? Bool else { return }
         guard shouldReloadDetailVC == true else { return }
@@ -171,25 +176,13 @@ extension ListViewController: NSMenuItemValidation {
 
         switch menuItem.option {
         case .watched:
-            let _ = talks.mapInPlace { $0.watched = true }
-
-            var tag = TagModel(title: "Continue watching", query: "realm_continue", isActive: false)
-            TagSyncService.shared.handleStoredTag(&tag)
+            print("watched")
         case .unwatched:
-             let _ = talks.mapInPlace { $0.watched = false }
-
-             var tag = TagModel(title: "Continue watching", query: "realm_continue", isActive: false)
-             TagSyncService.shared.handleStoredTag(&tag)
+            print("unwatched")
         case .addToWatchlist:
-            let _ = talks.mapInPlace { $0.onWatchlist = true }
-
-            var tag = TagModel(title: "Watchlist", query: "realm_watchlist", isActive: true)
-            TagSyncService.shared.handleStoredTag(&tag)
+            print("addToWatchlist")
         case .removeFromWatchlist:
-            let _ = talks.mapInPlace { $0.onWatchlist = false }
-
-            var tag = TagModel(title: "Watchlist", query: "realm_watchlist", isActive: false)
-            TagSyncService.shared.handleStoredTag(&tag)
+            print("removeFromWatchlist")
         }
 
         self.tableView.reloadData(forRowIndexes: selectedAndClickedRowIndexes(), columnIndexes: IndexSet(integer: 0))

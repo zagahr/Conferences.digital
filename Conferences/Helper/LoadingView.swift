@@ -106,6 +106,9 @@ class LoadingView: NSView {
     }
 
     @objc func reload() {
+        let config = Config(key: .baseURL, value: nil)
+        ConfigManager.set(config)
+        
         spinner.isHidden = false
         errorStackView.isHidden = true
 

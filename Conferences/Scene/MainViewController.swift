@@ -13,23 +13,16 @@ final class MainViewController: NSViewController {
     lazy var loadingView = LoadingView()
     lazy var mainSplitViewController = SplitViewController()
 
-    private lazy var titleBarViewController = TitleBarViewController()
-
     override func loadView() {
         view = NSView()
-
-        addChild(titleBarViewController)
         addChild(mainSplitViewController)
 
-        view.addSubview(titleBarViewController.view)
         view.addSubview(mainSplitViewController.view)
-
-        titleBarViewController.view.edgesToSuperview(excluding: .bottom)
-        mainSplitViewController.view.edgesToSuperview(excluding: .top)
-        mainSplitViewController.view.topToBottom(of: titleBarViewController.view)
+        mainSplitViewController.view.edgesToSuperview()
 
         view.addSubview(loadingView)
         loadingView.edgesToSuperview()
     }
+
 }
 

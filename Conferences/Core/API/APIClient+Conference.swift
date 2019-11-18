@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import ConferencesCore
 
 enum ConferenceResource: Resource {
     case all
     case byOrganisator(Int)
 
     var path: String {
-       return "conferences"
+       return "conferences.json"
     }
 
     var method: HTTPMethod {

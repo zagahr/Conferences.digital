@@ -17,16 +17,8 @@ final class TalkService {
     weak var delegate: TalkServiceDelegate?
     private let apiClient = APIClient()
 
+
     private var talks = [Codable]()
-    private var backup = [Codable]()
-
-    init() {
-        observe()
-    }
-
-    func observe() {
-        NotificationCenter.default.addObserver(self, selector: #selector(filterTalks), name: .refreshTableView, object: nil)
-    }
 
     func fetchData() {
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -41,7 +33,6 @@ final class TalkService {
                     }
 
                     self?.talks = result
-                    self?.backup = result
 
                     DispatchQueue.main.async {
                         self?.delegate?.didFetch(result)
@@ -54,49 +45,6 @@ final class TalkService {
         }
     }
 
-    @objc private func filterTalks() {
-        guard let seachableBackup = self.backup as? [Searchable] else { return }
-        let activeTags = TagSyncService.shared.tags.filter { $0.isActive }
-
-        if activeTags.isEmpty {
-            self.talks = backup
-        } else {
-            var currentBatch = seachableBackup
-            activeTags.forEach ({ (tag) in
-                
-                if (tag.title == TagSyncService.watchedTitle) {
-                    currentBatch = currentBatch.filter {
-                        if $0 is TalkModel { return ($0 as! TalkModel).watched }
-                        else if $0 is ConferenceModel { return true }
-                        else { return false }
-                    }
-                }
-                else if (tag.title == TagSyncService.notWatchedTitle) {
-                    currentBatch = currentBatch.filter {
-                        if $0 is TalkModel { return !($0 as! TalkModel).watched }
-                        else if $0 is ConferenceModel { return true }
-                        else { return false }
-                    }
-                }
-                else {
-                    currentBatch = currentBatch.filter {
-                        if $0 is TalkModel { return $0.searchString.contains(tag.query) }
-                        else if $0 is ConferenceModel { return true }
-                        else { return false }
-                    }
-                }
-            })
-            
-            currentBatch = removeEmptyConferences(currentBatch)
-
-            self.talks = currentBatch as! [Codable]
-        }
-
-        DispatchQueue.main.async {
-            self.delegate?.didFetch(self.talks)
-        }
-    }
-    
     func removeEmptyConferences(_ list: [Searchable]) -> [Searchable] {
         var newList: [Searchable] = []
         

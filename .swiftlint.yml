@@ -1,0 +1,104 @@
+excluded:
+  - Pods
+  - .build
+
+disabled_rules:
+  - large_tuple
+  - missing_docs
+
+opt_in_rules:
+  # -----------------------------------------
+  # We're using SwiftFormat for these instead
+  # -----------------------------------------
+  # - modifier_order
+  # - multiline_arguments_brackets
+  # - multiline_parameters_brackets
+  # - trailing_closure
+  # -----------------------------------------
+  - anyobject_protocol
+  - attributes
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - conditional_returns_on_newline
+  - contains_over_first_not_nil
+  - convenience_type
+  - discouraged_object_literal
+  - empty_count
+  - empty_string
+  - empty_xctest_method
+  - explicit_init
+  - extension_access_modifier
+  - fallthrough
+  - fatal_error_message
+  - file_header
+  - first_where
+  - force_unwrapping
+  - function_default_parameter_at_end
+  - identical_operands
+  - implicit_return
+  - joined_default_parameter
+  - last_where
+  - legacy_multiple
+  - legacy_random
+  - literal_expression_end_indentation
+  - lower_acl_than_parent
+  - missing_docs
+  - multiline_arguments
+  - multiline_function_chains
+  - multiline_literal_brackets
+  - multiline_parameters
+  - operator_usage_whitespace
+  - overridden_super_call
+  - pattern_matching_keywords
+  - private_action
+  - private_outlet
+  - prohibited_super_call
+  - reduce_into
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - sorted_first_last
+  - sorted_imports
+  - switch_case_on_newline
+  - toggle_bool
+  - unneeded_parentheses_in_closure_argument
+  - untyped_error_in_catch
+  - unused_import
+  - unused_declaration
+  - vertical_parameter_alignment_on_call
+  - xct_specific_matcher
+  - yoda_condition
+
+line_length: 250
+cyclomatic_complexity: 25
+function_parameter_count: 10
+function_body_length: 500
+type_body_length: 1000
+file_length: 1900
+
+force_try:
+  severity: error
+
+force_unwrapping:
+  severity: error
+
+type_name:
+  min_length: 3
+  max_length:
+    warning: 50
+    error: 50
+  excluded: iPhone
+
+identifier_name:
+  min_length:
+    warning: 2
+    error: 2
+  max_length:
+    warning: 50
+    error: 50
+  excluded: id, on, mr, ms
+
+nesting:
+  type_level: 3
+
+reporter: "xcode"

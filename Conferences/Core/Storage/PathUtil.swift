@@ -33,7 +33,9 @@ final class PathUtil {
             fatalError("Bundle identifier is nil, this should never happen")
         }
 
-        let dir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first!
+        guard let dir = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first else {
+            fatalError()
+        }
 
         #if DEBUG
             var path = dir + "/\(identifier)"

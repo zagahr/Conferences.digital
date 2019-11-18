@@ -9,12 +9,11 @@
 import Foundation
 import Cocoa
 import RealmSwift
-import ConferencesCore
 
 struct TalkModel: Codable {
-    var id: Int
+    var id: String
     var title: String
-    var url: String
+    var url: String?
     var source: VideoSourceModel
     var videoId: String
     var details: String?
@@ -25,7 +24,7 @@ struct TalkModel: Codable {
 
 extension TalkModel {
     var previewImage: String {
-        return "\(Environment.url)/preview/previewImage-\(videoId).jpeg"
+        return "\(ConfigManager.baseUrl)images/preview/previewImage-\(videoId).jpeg"
     }
 }
 
@@ -80,19 +79,6 @@ extension TalkModel {
             model.active = newValue
 
             Storage.shared.setFavorite(model)
-        }
-    }
-
-    var currentlyPlaying: Bool {
-        get {
-            return Storage.shared.currentlyWatching(for: self.id)
-        }
-
-        set {
-            let model = CurrentlyWatchingModel()
-            model.id = self.id
-
-            Storage.shared.currentlyWatching(object: model)
         }
     }
 }

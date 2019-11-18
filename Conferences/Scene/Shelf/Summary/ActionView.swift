@@ -23,8 +23,8 @@ final class ActionView: NSView {
 
     private lazy var watchlistButton: ImageButton = {
         let b = ImageButton(frame: .zero)
-        b.height(25)
-        b.width(25)
+        b.height(20)
+        b.width(20)
 
         b.target = self
         b.action = #selector(toggleWatchlist)
@@ -39,8 +39,8 @@ final class ActionView: NSView {
 
     private lazy var watchButton: ImageButton = {
         let b = ImageButton(frame: .zero)
-        b.height(25)
-        b.width(25)
+        b.height(20)
+        b.width(20)
 
         b.target = self
         b.action = #selector(toggleWatch)
@@ -75,21 +75,10 @@ final class ActionView: NSView {
     }
 
     @objc func toggleWatch() {
-        guard var talk = self.talk else { return }
 
-        talk.watched.toggle()
-
-        NotificationCenter.default.post(Notification(name: .refreshActiveCell))
-
-        var tag = TagModel(title: "Confinue watching", query: "realm_continue", isActive: false)
-        TagSyncService.shared.handleStoredTag(&tag)
     }
 
     @objc func toggleWatchlist() {
-        guard var talk = self.talk else { return }
-        talk.onWatchlist.toggle()
-
-        var tag = TagModel(title: "Watchlist", query: "realm_watchlist", isActive: talk.onWatchlist)
-        TagSyncService.shared.handleStoredTag(&tag)
+        
     }
 }

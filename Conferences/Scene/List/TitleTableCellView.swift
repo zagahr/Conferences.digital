@@ -8,14 +8,9 @@
 
 import Cocoa
 
-class TitleTableCellView: NSTableRowView  {
+class TitleTableCellView: NSTableCellView {
 
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        NSColor.panelBackground.set()
-        dirtyRect.fill()
-    }
+    private lazy var conferenceView = ConferenceView()
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -28,7 +23,8 @@ class TitleTableCellView: NSTableRowView  {
 
         if let superview = self.superview as? NSTableRowView {
             superview.isGroupRowStyle = false
-            superview.backgroundColor = NSColor.panelBackground
+        //    superview.selectionHighlightStyle = .none
+       //     superview.backgroundColor = NSColor.panelBackground
         }
     }
 
@@ -36,18 +32,14 @@ class TitleTableCellView: NSTableRowView  {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private lazy var conferenceView: ConferenceView = {
-        let v = ConferenceView()
-
-        return v
-    }()
-
     private func configureView() {
+        
         addSubview(conferenceView)
-        conferenceView.edgesToSuperview(insets: .init(top: 20, left: 20, bottom: 20, right: 20))
+        conferenceView.edgesToSuperview()
     }
 
     func configureView(with model: ConferenceModel) {
+
         conferenceView.configureView(with: model)
     }
 

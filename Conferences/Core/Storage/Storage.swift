@@ -12,35 +12,35 @@ final class Storage {
     static let shared = Storage()
 
     private func makeRealm() -> Realm? {
-        let filePath = PathUtil.appSupportPathAssumingExisting + "/default.realm"
+        let filePath = PathUtil.appSupportPathAssumingExisting + "/default_v2.realm"
 
         var realmConfig = Realm.Configuration(fileURL: URL(fileURLWithPath: filePath))
-        realmConfig.objectTypes = [ProgressModel.self, WatchlistModel.self, CurrentlyWatchingModel.self ]
+        realmConfig.objectTypes = [ProgressModel.self, WatchlistModel.self]
 
         return try? Realm(configuration: realmConfig)
     }
 
     private lazy var realm: Realm? = {
-        return self.makeRealm()
+        self.makeRealm()
     }()
 
-    func getProgress(for id: Int) ->  ProgressModel? {
+    func getProgress(for id: String) -> ProgressModel? {
         return realm?.object(ofType: ProgressModel.self, forPrimaryKey: id)
     }
 
-    func isOnWatchlist(for id: Int) -> WatchlistModel? {
+    func isOnWatchlist(for id: String) -> WatchlistModel? {
         return realm?.object(ofType: WatchlistModel.self, forPrimaryKey: id)
     }
 
-    func getModelsForContinue() -> [Int] {
+    func getModelsForContinue() -> [String] {
         return realm?.objects(ProgressModel.self).filter { $0.watched == false && $0.relativePosition > 0 }.map { $0.id } ?? []
     }
 
-    func getWatchlist() -> [Int] {
+    func getWatchlist() -> [String] {
         return realm?.objects(WatchlistModel.self).filter { $0.active == true }.map { $0.id } ?? []
     }
 
-    func setFavorite(_ object: WatchlistModel)   {
+    func setFavorite(_ object: WatchlistModel) {
         try! realm?.write {
             if object.active {
                 LoggingHelper.register(event: .addToWatchlist, info: ["videoId": String(object.id)])
@@ -54,35 +54,10 @@ final class Storage {
         }
     }
 
-    func trackProgress(object: ProgressModel)   {
+    func trackProgress(object: ProgressModel) {
         try! realm?.write {
             realm?.add(object, update: true)
         }
     }
 
-    func currentlyWatching(object: CurrentlyWatchingModel)   {
-        try! realm?.write {
-            if let objectToRemove = realm?.object(ofType: CurrentlyWatchingModel.self, forPrimaryKey: object.id) {
-                realm?.delete(objectToRemove)
-            } else {
-                realm?.add(object, update: true)
-            }
-        }
-    }
-
-    func currentlyWatching(for id: Int) -> Bool {
-        if let _ = realm?.object(ofType: CurrentlyWatchingModel.self, forPrimaryKey: id) {
-            return true
-        } else {
-            return false
-        }
-    }
-
-    func clearCurrentlyWatching() {
-        guard let currentlyWatching = realm?.objects(CurrentlyWatchingModel.self) else { return }
-
-        try! realm?.write {
-            realm?.delete(currentlyWatching)
-        }
-    }
 }

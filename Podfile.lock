@@ -2,33 +2,41 @@ PODS:
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - Fabric (1.9.0)
+  - Kingfisher (5.9.0):
+    - Kingfisher/Core (= 5.9.0)
+  - Kingfisher/Core (5.9.0)
   - LetsMove (1.24)
-  - Realm (3.13.1):
-    - Realm/Headers (= 3.13.1)
-  - Realm/Headers (3.13.1)
-  - RealmSwift (3.13.1):
-    - Realm (= 3.13.1)
+  - Realm (3.20.0):
+    - Realm/Headers (= 3.20.0)
+  - Realm/Headers (3.20.0)
+  - RealmSwift (3.20.0):
+    - Realm (= 3.20.0)
   - Sparkle (1.21.3)
+  - SwiftLint (0.37.0)
   - TinyConstraints (3.3.1)
   - YoutubePlayer-in-WKWebView (0.2.5)
 
 DEPENDENCIES:
   - Crashlytics
   - Fabric
+  - Kingfisher (~> 5.0)
   - LetsMove
-  - RealmSwift
+  - RealmSwift (~> 3.20.0)
   - Sparkle
+  - SwiftLint
   - TinyConstraints
   - YoutubePlayer-in-WKWebView (from `https://github.com/zagahr/YoutubePlayer-in-WKWebView.git`, branch `master`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Crashlytics
     - Fabric
+    - Kingfisher
     - LetsMove
     - Realm
     - RealmSwift
     - Sparkle
+    - SwiftLint
     - TinyConstraints
 
 EXTERNAL SOURCES:
@@ -38,19 +46,21 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   YoutubePlayer-in-WKWebView:
-    :commit: 13d0d24d03bc9d2d8760e74c9883f10f8289407f
+    :commit: 838a19c2727ab4d9f3037b672c1c7df701479dfe
     :git: https://github.com/zagahr/YoutubePlayer-in-WKWebView.git
 
 SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  Kingfisher: ff98240aebb7302bdc4f1ecd701761030ce18b16
   LetsMove: fefe56bc7bc7fb7d37049e28a14f297961229fc5
-  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
-  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
+  Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
+  RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
   Sparkle: 3f75576db8b0265adef36c43249d747f22d0b708
+  SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
   TinyConstraints: dbf7519aefc01ea59d62244300c7718aec68e280
   YoutubePlayer-in-WKWebView: 59b2a6157b043daf81e58e14bfc4a9c3264f6ed6
 
-PODFILE CHECKSUM: a3497e1b0be81796c7fe19adb39cc31692a9f8f5
+PODFILE CHECKSUM: 4997fe6a524fa1ea99ab31af15df579cb76b1146
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.8.4

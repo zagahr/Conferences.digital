@@ -9,7 +9,7 @@
 import RealmSwift
 
 class WatchlistModel: Object {
-    @objc dynamic var id = 0
+    @objc dynamic var id = ""
     @objc dynamic var active = true
 
     override static func primaryKey() -> String? {
