@@ -120,7 +120,7 @@ final class ConferenceView: NSView {
     private lazy var stackView: NSStackView = {
         let v = NSStackView(views: [self.logo, self.informationStackView])
 
-        v.alignment = .top
+        v.alignment = .centerY
         v.distribution = .fill
         v.spacing = 15
 
@@ -131,9 +131,9 @@ final class ConferenceView: NSView {
         let containerView = NSView()
         containerView.wantsLayer = true
         containerView.layer?.cornerRadius = 10
-        containerView.layer?.backgroundColor = NSColor.elementBackground.cgColor
+        containerView.layer?.backgroundColor = NSColor.windowBackground.cgColor
         addSubview(containerView)
-        containerView.edgesToSuperview(insets: .init(top: 0, left: 10, bottom: 5, right: 0))
+        containerView.edgesToSuperview(insets: .init(top: 5, left: 10, bottom: 5, right: 0))
 
         containerView.addSubview(stackView)
         stackView.edgesToSuperview(insets: .init(top: 5, left: 5, bottom: 5, right: 5))
@@ -151,7 +151,6 @@ final class ConferenceView: NSView {
         self.logo.image = NSImage(named: "placeholder-square")
         guard let imageUrl = URL(string: model.logo) else { return }
 
-        print(model.logo)
         imageDownloadOperation?.cancel()
 
         imageDownloadOperation = KingfisherManager.shared.retrieveImage(with: imageUrl) { result in

@@ -17,7 +17,7 @@ struct TalkModel: Codable {
     var source: VideoSourceModel
     var videoId: String
     var details: String?
-    var speaker: SpeakerModel
+    var speaker: SpeakerModel?
     var highlightColor: String
     var tags: [String]
 }
@@ -39,10 +39,9 @@ extension TalkModel: Searchable {
         return #"""
             \#(title)
             \#(details ?? "")
-            \#(speaker.firstname)
-            \#(speaker.lastname)
-            \#(speaker.twitter ?? "")
-            \#(tags.joined(separator: " "))
+            \#(speaker?.firstname ?? "")
+            \#(speaker?.lastname ?? "")
+            \#(speaker?.twitter ?? "")           
             \#(onWatchlist ? "realm_watchlist" : "")
             \#((progress?.watched == false && progress?.currentPosition != 0.0) ? "realm_continue" : "")
             """#

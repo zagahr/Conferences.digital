@@ -151,9 +151,6 @@ final class SpeakerView: NSView {
     private func configureView() {
         wantsLayer = true
 
-        layer?.cornerRadius = 10
-        layer?.backgroundColor = NSColor.elementBackground.cgColor
-
         addSubview(stackView)
         stackView.edgesToSuperview(insets: .init(top: 15, left: 15, bottom: 15, right: 15))
 

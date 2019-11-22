@@ -34,8 +34,8 @@ final class MainWindowController: NSWindowController {
         window.identifier = .mainWindow
         window.minSize = CGSize(width: 530, height: 350)
 
-        //window.isMovableByWindowBackground = true
-        //window.tabbingMode = .disallowed
+        window.isMovableByWindowBackground = true
+        window.tabbingMode = .disallowed
 
         self.window = window
 

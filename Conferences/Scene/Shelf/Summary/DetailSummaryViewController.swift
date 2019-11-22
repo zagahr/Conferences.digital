@@ -108,8 +108,14 @@ class DetailSummaryViewController: NSViewController {
         contextLabel.stringValue = talk.tags.filter { !$0.contains("2019") && !$0.contains("2018") && !$0.contains("2017") && !$0.contains("2016")}.joined(separator: " • ")
 
         contextLabel.isHidden = contextLabel.stringValue.isEmpty
-        speakerView.configureView(with: talk.speaker)
         actionView.configureView(with: talk)
+
+        if let speaker = talk.speaker {
+            speakerView.isHidden = false
+            speakerView.configureView(with: speaker)
+        } else {
+            speakerView.isHidden = true
+        }
     }
 
 }

@@ -10,12 +10,12 @@ import Cocoa
 
 @objc extension NSColor {
 
-    static var paneBackground: NSColor {
-        return NSColor(red: 0.16, green: 0.16, blue: 0.16, alpha:1.0)
+    static var listBackground: NSColor {
+        return NSColor(calibratedRed: 0.08, green: 0.08, blue: 0.08, alpha: 1.00)
     }
 
     static var windowBackground: NSColor {
-        return NSColor(red: 0.11, green: 0.11, blue: 0.11, alpha:1.0)
+        return NSColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
     }
 
 
@@ -32,7 +32,7 @@ import Cocoa
     }
 
     static var panelBackground: NSColor {
-        return NSColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
+        return NSColor(red:0.12, green:0.12, blue:0.12, alpha:1.0)
     }
 
     static var darkWindowBackground: NSColor {

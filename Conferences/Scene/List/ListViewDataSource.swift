@@ -33,7 +33,7 @@ extension ListViewDataSource: NSTableViewDataSource, NSTableViewDelegate {
     }
 
     fileprivate struct Metrics {
-        static let headerRowHeight: CGFloat = 70
+        static let headerRowHeight: CGFloat = 75
         static let sessionRowHeight: CGFloat = 64
     }
 
@@ -119,4 +119,6 @@ extension ListViewDataSource: NSTableViewDataSource, NSTableViewDelegate {
             return true
         }
     }
+
+
 }

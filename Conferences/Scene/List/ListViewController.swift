@@ -24,7 +24,7 @@ class ListViewController: NSViewController {
         v.allowsEmptySelection = false
         v.focusRingType = .none
         v.allowsMultipleSelection = true
-        v.backgroundColor = NSColor.windowBackground
+        v.backgroundColor = NSColor.listBackground
         v.headerView = nil
         v.autoresizingMask = [.width, .height]
         v.selectionHighlightStyle = .regular

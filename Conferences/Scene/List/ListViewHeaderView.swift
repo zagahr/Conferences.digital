@@ -23,9 +23,7 @@ final class ListViewHeaderView: NSView {
 
         v.wantsLayer = true
         v.layer?.cornerRadius = 4
-        v.layer?.borderWidth = 1
-        v.layer?.borderColor = NSColor.elementBackground.cgColor
-        v.layer?.backgroundColor = NSColor.elementBackground.cgColor
+        v.layer?.backgroundColor = NSColor.windowBackground.cgColor
 
         return v
     }()
@@ -47,6 +45,12 @@ final class ListViewHeaderView: NSView {
         return v
     }()
 
+    private lazy var segmentControl: NSSegmentedControl = {
+        let control = NSSegmentedControl()
+
+        return control
+    }()
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
 
@@ -59,12 +63,19 @@ final class ListViewHeaderView: NSView {
 
     private func configureView() {
         wantsLayer = true
-        layer?.backgroundColor = NSColor.windowBackground.cgColor
+        layer?.backgroundColor = NSColor.listBackground.cgColor
 
         addSubview(container)
+        addSubview(segmentControl)
         container.addSubview(searchBar)
         searchBar.widthToSuperview()
         searchBar.centerInSuperview()
+
+        segmentControl.bottom(to: searchBar)
+        segmentControl.leftToSuperview()
+        segmentControl.rightToSuperview()
+        segmentControl.height(40
+        )
 
         container.centerYToSuperview()
         container.height(25)
@@ -75,6 +86,10 @@ final class ListViewHeaderView: NSView {
             container.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             container.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
         ])
+    }
+
+    @objc private func didSaaaearch(_ sender: Any?) {
+        print("claer")
     }
 
     @objc private func didSearch() {

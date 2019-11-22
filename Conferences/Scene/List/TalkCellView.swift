@@ -135,13 +135,13 @@ final class TalkCellView: NSTableCellView {
         stackView.top(to: thumbnailImageView)
         stackView.bottom(to: thumbnailImageView)
         stackView.leadingToTrailing(of: thumbnailImageView, offset: 6)
-        stackView.trailing(to: self, offset: -40)
+        stackView.trailing(to: self, offset: -5)
     }
 
     func configureView(with model: TalkModel) {
         titleLabel.stringValue = model.title
 
-        subtitleLabel.stringValue = "\(model.speaker.firstname) \(model.speaker.lastname)"
+        subtitleLabel.stringValue = "\(model.speaker?.firstname ?? "") \(model.speaker?.lastname ?? "")"
         contextLabel.stringValue = model.tags.filter { !$0.contains("2019") && !$0.contains("2018") && !$0.contains("2017") && !$0.contains("2016")}.joined(separator: " • ")
 
         colorContainer.layer?.backgroundColor = NSColor(hexString: model.highlightColor).cgColor
