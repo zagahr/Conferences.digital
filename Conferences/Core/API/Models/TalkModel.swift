@@ -77,7 +77,7 @@ extension TalkModel {
             model.id = self.id
             model.active = newValue
 
-            Storage.shared.setFavorite(model)
+            Storage.shared.addToWatchlist(model)
         }
     }
 }

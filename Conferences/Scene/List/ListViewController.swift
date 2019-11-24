@@ -14,7 +14,7 @@ class ListViewController: NSViewController {
     private lazy var headerView: NSView = {
         let v = ListViewHeaderView()
 
-        v.height(100)
+        v.height(150)
         return v
     }()
 

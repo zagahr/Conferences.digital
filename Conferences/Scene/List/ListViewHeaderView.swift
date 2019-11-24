@@ -18,18 +18,17 @@ final class SearchBar: NSSearchField {
 
 final class ListViewHeaderView: NSView {
 
-    private lazy var container: NSView = {
+    private lazy var searchContainer: NSView = {
         let v = NSView()
 
         v.wantsLayer = true
-        v.layer?.cornerRadius = 4
+        v.layer?.cornerRadius = 7
         v.layer?.backgroundColor = NSColor.windowBackground.cgColor
 
         return v
     }()
 
     private lazy var searchBar: SearchBar = {
-
         let v = SearchBar()
 
         v.focusRingType = .none
@@ -39,16 +38,25 @@ final class ListViewHeaderView: NSView {
         v.isBordered = false
         v.textColor = .white
         v.placeholderString = "Search"
-        v.font = .systemFont(ofSize: 17)
+        v.font = .systemFont(ofSize: 15)
         v.usesSingleLineMode = true
 
         return v
     }()
 
-    private lazy var segmentControl: NSSegmentedControl = {
-        let control = NSSegmentedControl()
+    private lazy var segmentControl: SegmentControl = {
+        let control = SegmentControl()
 
         return control
+    }()
+
+    private lazy var stackView: NSStackView = {
+        let v = NSStackView(views: [searchContainer, segmentControl])
+        v.distribution = .fillEqually
+        v.spacing = 10
+        v.orientation = .vertical
+
+        return v
     }()
 
     override init(frame frameRect: NSRect) {
@@ -65,31 +73,21 @@ final class ListViewHeaderView: NSView {
         wantsLayer = true
         layer?.backgroundColor = NSColor.listBackground.cgColor
 
-        addSubview(container)
-        addSubview(segmentControl)
-        container.addSubview(searchBar)
+        addSubview(stackView)
+
+        searchContainer.addSubview(searchBar)
         searchBar.widthToSuperview()
         searchBar.centerInSuperview()
+        stackView.centerInSuperview()
+        stackView.leftToSuperview(offset: 20)
+        stackView.rightToSuperview(offset: -10)
+        stackView.height(70)
 
-        segmentControl.bottom(to: searchBar)
-        segmentControl.leftToSuperview()
-        segmentControl.rightToSuperview()
-        segmentControl.height(40
-        )
-
-        container.centerYToSuperview()
-        container.height(25)
-
-        container.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            container.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            container.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
+        segmentControl.setSegments([
+            (title: "All", size: .large),
+            (title: "", size: .space),
+            (title: "Watchlist", size: .large)
         ])
-    }
-
-    @objc private func didSaaaearch(_ sender: Any?) {
-        print("claer")
     }
 
     @objc private func didSearch() {
@@ -106,7 +104,8 @@ final class ListViewHeaderView: NSView {
         LoggingHelper.register(event: .searchFor, info: ["term": searchTerm])
         
         let notification = Notification(name: Notification.Name.UserDidSearch, object: nil, userInfo: ["searchTerm": searchTerm])
-        
+
+        segmentControl.didSelectCell("All")
         NotificationCenter.default.post(notification)
     }
 

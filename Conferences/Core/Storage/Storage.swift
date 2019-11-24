@@ -28,19 +28,22 @@ final class Storage {
         return realm?.object(ofType: ProgressModel.self, forPrimaryKey: id)
     }
 
+    func trackProgress(object: ProgressModel) {
+        try! realm?.write {
+            realm?.add(object, update: .all)
+        }
+    }
+
     func isOnWatchlist(for id: String) -> WatchlistModel? {
         return realm?.object(ofType: WatchlistModel.self, forPrimaryKey: id)
     }
 
-    func getModelsForContinue() -> [String] {
-        return realm?.objects(ProgressModel.self).filter { $0.watched == false && $0.relativePosition > 0 }.map { $0.id } ?? []
-    }
 
     func getWatchlist() -> [String] {
         return realm?.objects(WatchlistModel.self).filter { $0.active == true }.map { $0.id } ?? []
     }
 
-    func setFavorite(_ object: WatchlistModel) {
+    func addToWatchlist(_ object: WatchlistModel) {
         try! realm?.write {
             if object.active {
                 LoggingHelper.register(event: .addToWatchlist, info: ["videoId": String(object.id)])
@@ -51,12 +54,6 @@ final class Storage {
                     realm?.delete(objectToRemove)
                 }
             }
-        }
-    }
-
-    func trackProgress(object: ProgressModel) {
-        try! realm?.write {
-            realm?.add(object, update: .all)
         }
     }
 

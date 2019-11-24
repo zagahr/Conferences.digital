@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6635B383238923150028968C /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6635B382238923150028968C /* SegmentControl.swift */; };
+		6635B3852389231E0028968C /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6635B3842389231E0028968C /* Segment.swift */; };
 		669A1CA32379B345006E7E81 /* ConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A1CA12379B345006E7E81 /* ConfigManager.swift */; };
 		669A1CA42379B345006E7E81 /* ResourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A1CA22379B345006E7E81 /* ResourceProtocol.swift */; };
 		66C0F4D7237F1A400027CD97 /* ListViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C0F4D6237F1A400027CD97 /* ListViewHeaderView.swift */; };
@@ -121,6 +123,8 @@
 		3F706D58015314089C6C6C75 /* Pods-ConferenceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConferenceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConferenceTests/Pods-ConferenceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C794BD9C816D110E284D2DD /* Pods_Conference.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Conference.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BCA8183A8879FEE53F6089A /* Pods-ConferenceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConferenceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConferenceTests/Pods-ConferenceTests.release.xcconfig"; sourceTree = "<group>"; };
+		6635B382238923150028968C /* SegmentControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
+		6635B3842389231E0028968C /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		669A1CA12379B345006E7E81 /* ConfigManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigManager.swift; sourceTree = "<group>"; };
 		669A1CA22379B345006E7E81 /* ResourceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceProtocol.swift; sourceTree = "<group>"; };
 		66C0F4D6237F1A400027CD97 /* ListViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewHeaderView.swift; sourceTree = "<group>"; };
@@ -246,6 +250,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6635B381238923070028968C /* Segment */ = {
+			isa = PBXGroup;
+			children = (
+				6635B382238923150028968C /* SegmentControl.swift */,
+				6635B3842389231E0028968C /* Segment.swift */,
+			);
+			path = Segment;
+			sourceTree = "<group>";
+		};
 		84002DAE0E27D6A969586935 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +275,7 @@
 		B9159376220F6B2800599C4E /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				6635B381238923070028968C /* Segment */,
 				B9F7F7342205E7FF000EEB94 /* VibrantButton.swift */,
 				B915936C220F079300599C4E /* ConferencesAlert.swift */,
 				B95DC5672205BF0F0044A004 /* AspectFillImageView.swift */,
@@ -800,6 +814,7 @@
 				B95DC56C2205BF720044A004 /* NSColor+Extension.swift in Sources */,
 				B9F7F74F22060450000EEB94 /* VideoPlayerWindowController.swift in Sources */,
 				B915936D220F079300599C4E /* ConferencesAlert.swift in Sources */,
+				6635B3852389231E0028968C /* Segment.swift in Sources */,
 				B988E242222AAA1D00C9E45A /* APIClient.swift in Sources */,
 				B988E245222AAA1D00C9E45A /* VideoSourceModel.swift in Sources */,
 				B95DC5BD2205CD380044A004 /* Speeds.swift in Sources */,
@@ -821,6 +836,7 @@
 				B95DC5D22205CD390044A004 /* PUINowPlayingInfo.swift in Sources */,
 				B9F7F7412205EF85000EEB94 /* WWDCProgressIndicator.swift in Sources */,
 				B95DC5B42205CD380044A004 /* String+CMTime.swift in Sources */,
+				6635B383238923150028968C /* SegmentControl.swift in Sources */,
 				B920CD5A22120BB000C6C2AD /* LoadingView.swift in Sources */,
 				B9F7F7312205E795000EEB94 /* ShelfViewController.swift in Sources */,
 				B988E239222AAA1C00C9E45A /* YoutubeFetcher.swift in Sources */,

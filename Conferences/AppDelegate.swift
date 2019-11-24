@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Kingfisher
 import TinyConstraints
 import LetsMove
 
@@ -16,6 +17,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         guard PFMoveIsInProgress() == false else { return }
+
+
 
         coordinator.start()
     }

@@ -22,7 +22,7 @@ public struct ConfigManager {
         if let url = UserDefaults.standard.string(forKey: Config.ConfigKey.baseURL.rawValue) {
             return url
         } else {
-            return "https://zagahr.github.io/ConferencesAPI/"
+            return "http://127.0.0.1:4000"
         }
     }
 

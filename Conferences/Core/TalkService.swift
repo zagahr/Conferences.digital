@@ -53,22 +53,52 @@ final class TalkService {
     }
     
     @objc func filterTalks(_ notification: NSNotification) {
-        guard var searchTerm = notification.userInfo?["searchTerm"] as? String, !searchTerm.isEmpty else {
-            
-            DispatchQueue.main.async {
-                self.delegate?.didFetch(self.talks)
-            }
-            
-            return
+        if let search = notification.userInfo?["searchTerm"] as? String {
+            searchTalks(by: search)
+        } else if let _ = notification.userInfo?["Watchlist"] as? Bool {
+            getWatchlist()
+        } else {
+            getAllTalks()
         }
-        
-        searchTerm = searchTerm.lowercased()
+    }
+
+    private func searchTalks(by term: String) {
+
+        let searchTerm = term.lowercased()
             .replacingOccurrences(of: " ", with: "")
             .replacingOccurrences(of: "\n", with: "")
-        
+
+        guard !searchTerm.isEmpty else {
+            getAllTalks()
+            return
+        }
+
         var talks = self.talks.compactMap { $0 as? TalkModel }
         talks = talks.filter { $0.searchString.contains(searchTerm) }
-        
+
+        DispatchQueue.main.async {
+            self.delegate?.didFetch(talks)
+        }
+    }
+
+    private func getAllTalks() {
+        DispatchQueue.main.async {
+            self.delegate?.didFetch(self.talks)
+        }
+    }
+
+    private func getWatchlist() {
+
+        let watchlistIds = Storage.shared.getWatchlist()
+
+        let talks = self.talks.filter {
+            if let talk = $0 as? TalkModel {
+                return watchlistIds.contains(talk.id)
+            } else {
+                return false
+            }
+        }
+
         DispatchQueue.main.async {
             self.delegate?.didFetch(talks)
         }
