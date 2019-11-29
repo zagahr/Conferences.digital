@@ -22,7 +22,6 @@ default_platform(:mac)
         UI.user_error!("Wrong release type use: alpha or release")
       end
 
-      increment_build_number
       build
       
       build_number = get_build_number(xcodeproj: "Conferences.xcodeproj")
