@@ -68,9 +68,6 @@ final class VideoPlayerViewController: NSViewController, Playable {
         playerView.frame = view.bounds
         view.addSubview(playerView)
 
-        //todo chromecast
-       //playerView.registerExternalPlaybackProvider(ChromeCastPlaybackProvider.self)
-
         playerView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         playerView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         playerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -84,14 +81,6 @@ final class VideoPlayerViewController: NSViewController, Playable {
 
         progressIndicator.layer?.zPosition = 999
     }
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        playerView.delegate = self
-//        resetAppearanceDelegate()
-//        reset(oldValue: nil)
-//    }
 
     func resetAppearanceDelegate() {
         playerView.appearanceDelegate = self
@@ -185,6 +174,8 @@ final class VideoPlayerViewController: NSViewController, Playable {
             showLoading()
         case .playing, .paused:
             hideLoading()
+        default:
+            print("unknown")
         }
     }
 
@@ -267,7 +258,7 @@ extension VideoPlayerViewController: PUIPlayerViewAppearanceDelegate {
     }
 
     func playerViewShouldShowPictureInPictureControl(_ playerView: PUIPlayerView) -> Bool {
-       return false
+       return true
     }
 
     func playerViewShouldShowSpeedControl(_ playerView: PUIPlayerView) -> Bool {
@@ -287,7 +278,7 @@ extension VideoPlayerViewController: PUIPlayerViewAppearanceDelegate {
     }
 
     func playerViewShouldShowFullScreenButton(_ playerView: PUIPlayerView) -> Bool {
-        return false
+        return true
     }
 
     func playerViewShouldShowTimelineView(_ playerView: PUIPlayerView) -> Bool {

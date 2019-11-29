@@ -39,7 +39,6 @@ final class TagFilterViewController: NSViewController {
         v.hasVerticalScroller = false
         v.hasHorizontalScroller = false
         v.drawsBackground = true
-        v.backgroundColor = NSColor.elementBackground
 
         return v
     }()
@@ -51,7 +50,6 @@ final class TagFilterViewController: NSViewController {
 
         return v
     }()
-
 
     @objc private func updateTags() {
         let tags = TagSyncService.shared.tags

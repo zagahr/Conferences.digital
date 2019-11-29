@@ -22,12 +22,17 @@ final class MainWindowController: NSWindowController {
         let mask: NSWindow.StyleMask = [.titled, .resizable, .miniaturizable, .closable, .fullSizeContentView]
         let window = NSWindow(contentRect: MainWindowController.defaultRect, styleMask: mask, backing: .buffered, defer: false)
 
-        window.backgroundColor = NSColor.elementBackground
+        let visualEffect = NSVisualEffectView()
+        visualEffect.blendingMode = .behindWindow
+        visualEffect.state = .active
+        visualEffect.material = .dark
+        window.contentView = visualEffect
+
         window.titlebarAppearsTransparent = true
-        window.titleVisibility = .hidden
+        window.styleMask.insert(.fullSizeContentView)
 
         window.identifier = .mainWindow
-        window.minSize = CGSize(width: 1060, height: 700)
+        window.minSize = CGSize(width: 530, height: 350)
 
         window.isMovableByWindowBackground = true
         window.tabbingMode = .disallowed

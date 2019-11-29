@@ -6,7 +6,9 @@ target 'Conferences' do
   inhibit_all_warnings!
 
   # Pods for Conferences
-  pod 'RealmSwift'
+  pod 'SwiftLint'
+  pod 'RealmSwift', '~> 3.20.0'
+  pod 'Kingfisher', '~> 5.0'
   pod 'TinyConstraints'
   pod 'Fabric'
   pod 'Crashlytics'
@@ -14,9 +16,4 @@ target 'Conferences' do
   pod 'LetsMove'
   pod 'YoutubePlayer-in-WKWebView', :git => 'https://github.com/zagahr/YoutubePlayer-in-WKWebView.git', :branch=>'master'
   
-  target 'ConferencesTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

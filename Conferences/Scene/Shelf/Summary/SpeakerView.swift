@@ -7,10 +7,11 @@
 //
 
 import Cocoa
+import Kingfisher
 
 final class SpeakerView: NSView {
     private var speaker: SpeakerModel?
-    private weak var imageDownloadOperation: Operation?
+    private var imageDownloadOperation: DownloadTask?
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -49,8 +50,8 @@ final class SpeakerView: NSView {
 
     private lazy var twitterButton: ImageButton = {
         let b = ImageButton(frame: .zero)
-        b.height(25)
-        b.width(25)
+        b.height(20)
+        b.width(20)
         b.image = #imageLiteral(resourceName: "twitter")
         b.target = self
         b.action = #selector(openTwitter)
@@ -61,8 +62,8 @@ final class SpeakerView: NSView {
 
     private lazy var githubButton: ImageButton = {
         let b = ImageButton(frame: .zero)
-        b.height(25)
-        b.width(25)
+        b.height(20)
+        b.width(20)
         b.image = #imageLiteral(resourceName: "github")
         b.target = self
         b.action = #selector(openGithub)
@@ -77,9 +78,6 @@ final class SpeakerView: NSView {
         l.font = .systemFont(ofSize: 20, weight: .semibold)
         l.textColor = .primaryText
         l.lineBreakMode = .byTruncatingTail
-
-        let click = NSClickGestureRecognizer(target: self, action: #selector(showMoreByUser))
-        l.addGestureRecognizer(click)
 
         return l
     }()
@@ -153,9 +151,6 @@ final class SpeakerView: NSView {
     private func configureView() {
         wantsLayer = true
 
-        layer?.cornerRadius = 10
-        layer?.backgroundColor = NSColor.elementBackground.cgColor
-
         addSubview(stackView)
         stackView.edgesToSuperview(insets: .init(top: 15, left: 15, bottom: 15, right: 15))
 
@@ -176,22 +171,18 @@ final class SpeakerView: NSView {
 
         aboutLabel.stringValue = model.about ?? ""
         aboutLabel.invalidateIntrinsicContentSize()
-        guard let imageUrl = URL(string: model.image) else { return }
 
-        self.imageDownloadOperation?.cancel()
-        self.imageDownloadOperation = ImageDownloadCenter.shared.downloadImage(from: imageUrl, thumbnailHeight: 100) { [weak self] url, _, thumb in
-            guard url == imageUrl, thumb != nil else { return }
+        imageDownloadOperation?.cancel()
+        self.profilePicture.image = NSImage(named: "placeholder-square")
 
-            self?.profilePicture.image = thumb
-        }
-    }
+        guard let imageUrl = URL(string: model.image ?? "") else { return }
 
-    @objc func showMoreByUser() {
-        let searchTerm = titleLabel.stringValue
-
-        if !searchTerm.isEmpty {
-            var tag = TagModel(title: searchTerm, isActive: true)
-            TagSyncService.shared.handleTag(&tag)
+        imageDownloadOperation = KingfisherManager.shared.retrieveImage(with: imageUrl) { result in
+            if let image = try? result.get() {
+                self.profilePicture.image = image.image
+            } else {
+                self.profilePicture.image = NSImage(named: "placeholder-square")
+            }
         }
     }
 

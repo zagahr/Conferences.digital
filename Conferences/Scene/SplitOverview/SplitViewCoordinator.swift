@@ -12,7 +12,6 @@ import WebKit
 final class SplitViewCoordinator {
     private let rootViewController: SplitViewController
     private var currentPlayer: Playable?
-    private var selectedTalk: TalkModel?
 
     lazy var listDataDelegate: ListViewDataSource = {
         let l = ListViewDataSource()
@@ -33,33 +32,29 @@ final class SplitViewCoordinator {
 }
 
 extension SplitViewCoordinator: ListViewDataSourceDelegate {
-    func reloadCellAt(index: Int) {
-        rootViewController.listViewController.tableView.reloadData(forRowIndexes: IndexSet(integer: index), columnIndexes: IndexSet(integer: 0))
-    }
 
     func didSelectTalk(_ talk: TalkModel) {
-        self.selectedTalk = talk
+        
+        guard NSApp.windows.compactMap({ $0.contentViewController as? PIPViewController }).isEmpty  == true else {
+            return
+        }
+        
+        currentPlayer?.removeFromParent()
+        currentPlayer = nil
+
         rootViewController.detailViewController.configureView(with: talk)
     }
+
 }
 
 extension SplitViewCoordinator: ShelfViewControllerDelegate {
-    func shelfViewControllerDidSelectPlay(_ controller: ShelfViewController) {
-        guard var nowPlayingTalk = self.selectedTalk else { return }
-
-        listDataDelegate.removeWatchIcon()
-        nowPlayingTalk.currentlyPlaying = true
-
+    func shelfViewControllerDidSelectPlay(_ controller: ShelfViewController, talk: TalkModel) {
         currentPlayer?.removeFromParent()
+        currentPlayer = nil
 
-        LoggingHelper.register(event: .playTalk, info: ["videoId": String(nowPlayingTalk.id), "source": nowPlayingTalk.source.rawValue])
+        LoggingHelper.register(event: .playTalk, info: ["videoId": String(talk.id), "source": talk.source.rawValue])
 
-        switch nowPlayingTalk.source {
-            case .vimeo:
-                createNativePlayer(controller, talk: nowPlayingTalk)
-            case .youtube:
-                createWebPlayer(controller, talk: nowPlayingTalk)
-        }
+        createNativePlayer(controller, talk: talk)
     }
 
     private func createNativePlayer(_ controller: ShelfViewController, talk: TalkModel) {

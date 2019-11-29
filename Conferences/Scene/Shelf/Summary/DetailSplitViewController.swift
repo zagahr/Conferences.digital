@@ -27,14 +27,12 @@ final class DetailSplitViewController: NSSplitViewController {
         addSplitViewItem(detailItem)
         addSplitViewItem(listItem!)
 
+        summaryController.view.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        shelfController.view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        shelfController.view.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
 
-        shelfController.view.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        summaryController.view.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
 
-        summaryController.view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        summaryController.view.setContentHuggingPriority(.defaultLow, for: .vertical)
-
-        splitView.setValue(NSColor.elementBackground, forKey: "dividerColor")
+        splitView.setValue(NSColor.black, forKey: "dividerColor")
         splitView.dividerStyle = .thick
         splitView.autosaveName = "DetailSplitView"
         splitView.isVertical = false

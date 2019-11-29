@@ -7,9 +7,9 @@
 //
 
 import Cocoa
+import Kingfisher
 
 final class TalkCellView: NSTableCellView {
-    private weak var imageDownloadOperation: Operation?
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -24,27 +24,7 @@ final class TalkCellView: NSTableCellView {
     private lazy var colorContainer: NSView = {
         let v = NSView()
         v.wantsLayer = true
-        v.layer?.backgroundColor = NSColor.green.cgColor
-        v.width(0.7)
-
-        return v
-    }()
-
-    override func prepareForReuse() {
-        self.imageDownloadOperation?.cancel()
-
-        super.prepareForReuse()
-    }
-
-    private lazy var nowPlayingImage: NSImageView = {
-        let v = NSImageView()
-
-        v.imageScaling = .scaleAxesIndependently
-        v.image = NSImage(named: "speaker")
-        v.isHidden = true
-
-        v.height(15)
-        v.width(15)
+        v.width(1)
 
         return v
     }()
@@ -139,13 +119,9 @@ final class TalkCellView: NSTableCellView {
     private func configureView() {
         addSubview(colorContainer)
         addSubview(thumbnailImageView)
-        addSubview(nowPlayingImage)
         addSubview(stackView)
 
-        nowPlayingImage.leading(to: self, offset: 10)
-        nowPlayingImage.centerY(to: self)
-
-        colorContainer.leading(to: nowPlayingImage, offset: 30)
+        colorContainer.leading(to: self, offset: 15)
         colorContainer.topToSuperview()
         colorContainer.bottomToSuperview()
 
@@ -159,27 +135,21 @@ final class TalkCellView: NSTableCellView {
         stackView.top(to: thumbnailImageView)
         stackView.bottom(to: thumbnailImageView)
         stackView.leadingToTrailing(of: thumbnailImageView, offset: 6)
-        stackView.trailing(to: self, offset: -40)
+        stackView.trailing(to: self, offset: -5)
     }
 
     func configureView(with model: TalkModel) {
         titleLabel.stringValue = model.title
 
-        subtitleLabel.stringValue = "\(model.speaker.firstname) \(model.speaker.lastname)"
+        subtitleLabel.stringValue = "\(model.speaker?.firstname ?? "") \(model.speaker?.lastname ?? "")"
         contextLabel.stringValue = model.tags.filter { !$0.contains("2019") && !$0.contains("2018") && !$0.contains("2017") && !$0.contains("2016")}.joined(separator: " • ")
 
         colorContainer.layer?.backgroundColor = NSColor(hexString: model.highlightColor).cgColor
 
         progressView.isHidden = true
         watchtedIndicator.isHidden = true
-        nowPlayingImage.isHidden = true
 
         if let progress = model.progress {
-
-            if model.currentlyPlaying {
-                nowPlayingImage.isHidden = false
-            }
-
             if progress.relativePosition == 1 && progress.watched {
                 watchtedIndicator.isHidden = false
             } else if progress.relativePosition > 0 {
@@ -189,15 +159,8 @@ final class TalkCellView: NSTableCellView {
             }
         }
 
+        let imageUrl = URL(string: model.previewImage)
 
-        guard let imageUrl = URL(string: model.previewImage) else { return }
-        self.imageDownloadOperation?.cancel()
-        self.thumbnailImageView.image = NSImage(named: "placeholder")
-
-        self.imageDownloadOperation = ImageDownloadCenter.shared.downloadImage(from: imageUrl, thumbnailHeight: 150) { [weak self] url, _, thumb in
-            guard url == imageUrl, thumb != nil else { return }
-
-            self?.thumbnailImageView.image = thumb
-        }
+        thumbnailImageView.kf.setImage(with: imageUrl, placeholder: NSImage(named: "placeholder"))
     }
 }

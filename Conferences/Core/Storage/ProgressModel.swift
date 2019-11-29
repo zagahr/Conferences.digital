@@ -9,7 +9,7 @@
 import RealmSwift
 
 class ProgressModel: Object {
-    @objc dynamic var id = 0
+    @objc dynamic var id = ""
     @objc dynamic var watched = false
     @objc dynamic var currentPosition = 0.0
     @objc dynamic var relativePosition = 0.0

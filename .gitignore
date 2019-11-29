@@ -65,4 +65,5 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
-Conferences/SupportingFiles/GoogleService-Info.plist
+
+Conferences.xcodeproj/xcshareddata/

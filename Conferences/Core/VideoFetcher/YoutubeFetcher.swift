@@ -13,8 +13,8 @@ public extension String {
      Convenient method for decoding a html encoded string
      */
     func stringByDecodingURLFormat() -> String {
-        let result = self.replacingOccurrences(of: "+", with:" ")
-        return result.removingPercentEncoding!
+        let result = self.replacingOccurrences(of: "+", with: " ")
+        return result.removingPercentEncoding ?? ""
     }
 
     func convertToDictionary() -> [String: Any]? {
@@ -47,7 +47,7 @@ public extension String {
     }
 }
 
-open class Youtube: NSObject {
+final class Youtube: NSObject {
     static let infoURL = "https://www.youtube.com/get_video_info?video_id="
     static var userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4"
 
@@ -66,7 +66,7 @@ open class Youtube: NSObject {
 
         let session = URLSession(configuration: URLSessionConfiguration.default)
 
-        session.dataTask(with: request, completionHandler: { (data, response, _) -> Void in
+        session.dataTask(with: request, completionHandler: { data, response, _ -> Void in
             if let data = data as Data?,
                 let resultString = String(data: data, encoding: String.Encoding.utf8) {
 
@@ -92,7 +92,7 @@ open class Youtube: NSObject {
 
                         completionHandler(URL(string: url))
 
-                        break;
+                        break
                     }
 
                 }

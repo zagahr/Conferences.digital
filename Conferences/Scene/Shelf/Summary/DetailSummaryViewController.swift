@@ -12,7 +12,7 @@ class DetailSummaryViewController: NSViewController {
 
     private lazy var titleLabel: NSTextField = {
         let l = NSTextField(labelWithString: "")
-        l.font = .systemFont(ofSize: 40, weight: .bold)
+        l.font = .systemFont(ofSize: 30, weight: .bold)
         l.cell?.backgroundStyle = .dark
         l.lineBreakMode = NSLineBreakMode.byTruncatingTail
         l.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -20,8 +20,6 @@ class DetailSummaryViewController: NSViewController {
         l.maximumNumberOfLines = 1
         l.textColor = .primaryText
         l.isSelectable = true
-        // This prevents the text field from stripping attributes
-        // during selection. 
         l.allowsEditingTextAttributes = true
 
         return l
@@ -29,7 +27,7 @@ class DetailSummaryViewController: NSViewController {
 
     private lazy var summaryLabel: AutoLayoutTextField = {
         let l = AutoLayoutTextField(labelWithString: "")
-        l.font = .systemFont(ofSize: 18)
+        l.font = .systemFont(ofSize: 14)
         l.textColor = .secondaryText
 
         l.lineBreakMode = .byWordWrapping
@@ -43,7 +41,7 @@ class DetailSummaryViewController: NSViewController {
 
     private lazy var contextLabel: NSTextField = {
         let l = NSTextField(labelWithString: "")
-        l.font = .systemFont(ofSize: 16)
+        l.font = .systemFont(ofSize: 12)
         l.textColor = .tertiaryText
         l.cell?.backgroundStyle = .dark
         l.lineBreakMode = .byTruncatingTail
@@ -96,7 +94,7 @@ class DetailSummaryViewController: NSViewController {
     override func loadView() {
         view = NSView()
         view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.panelBackground.cgColor
+        view.layer?.backgroundColor = NSColor.black.cgColor
         view.addSubview(stackView)
 
         stackView.edgesToSuperview(insets: .init(top: 20, left: 20, bottom: 20, right: 20))
@@ -110,8 +108,14 @@ class DetailSummaryViewController: NSViewController {
         contextLabel.stringValue = talk.tags.filter { !$0.contains("2019") && !$0.contains("2018") && !$0.contains("2017") && !$0.contains("2016")}.joined(separator: " • ")
 
         contextLabel.isHidden = contextLabel.stringValue.isEmpty
-        speakerView.configureView(with: talk.speaker)
         actionView.configureView(with: talk)
+
+        if let speaker = talk.speaker {
+            speakerView.isHidden = false
+            speakerView.configureView(with: speaker)
+        } else {
+            speakerView.isHidden = true
+        }
     }
 
 }

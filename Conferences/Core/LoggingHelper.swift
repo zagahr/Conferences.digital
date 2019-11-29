@@ -7,8 +7,8 @@
 //
 
 import Cocoa
-import Fabric
 import Crashlytics
+import Fabric
 
 enum AnswerEvent: String {
     // "Opend" ¯\_(ツ)_/¯
@@ -26,7 +26,7 @@ enum AnswerEvent: String {
 }
 
 final class LoggingHelper {
-    
+
     static func install() {
         Fabric.with([Crashlytics.self])
     }

@@ -57,7 +57,7 @@ class AspectFillImageView: NSView {
         return l
     }()
 
-    private lazy var imageLayer: WWDCLayer = {
+    lazy var imageLayer: WWDCLayer = {
         let l = WWDCLayer()
 
         l.contentsGravity = .resizeAspect

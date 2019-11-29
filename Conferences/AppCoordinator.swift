@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import ConferencesCore
 
 final class AppCoordinator {
     var windowController: MainWindowController
@@ -17,21 +16,16 @@ final class AppCoordinator {
         mainCoordinator = MainCoordinator()
 
         self.windowController = windowController
-
-        if #available(macOS 10.14, *)  {
-            NSApp.appearance = NSAppearance.init(named: .darkAqua)
-        }
+        NSApp.appearance = NSAppearance(named: .darkAqua)
     }
 
     func start() {
         #if DEBUG
             do {
-                let _ = try PathUtil.appSupportPathCreatingIfNeeded()
+                _ = try PathUtil.appSupportPathCreatingIfNeeded()
             } catch {
                 fatalError(error.localizedDescription)
-            }
-
-            Environment.debug = !UserDefaults.standard.bool(forKey: "ConferencesForceServer")
+            }            
         #else
             UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
             LoggingHelper.install()

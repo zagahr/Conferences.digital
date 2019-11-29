@@ -10,7 +10,6 @@ import Foundation
 
 protocol ListViewDataSourceDelegate: class {
     func didSelectTalk(_ talk: TalkModel)
-    func reloadCellAt(index: Int)
 }
 
 final class ListViewDataSource: NSObject {
@@ -26,23 +25,6 @@ final class ListViewDataSource: NSObject {
         }
     }
 
-    func removeWatchIcon() {
-        guard let index = talks.firstIndex(where: { (talk) -> Bool in
-            if var model = talk as? TalkModel {
-                if model.currentlyPlaying == true {
-                    model.currentlyPlaying = false
-                    return true
-                } else {
-                    return false
-                }
-            } else {
-                return false
-            }
-        }) else { return }
-
-        self.delegate?.reloadCellAt(index: index)
-    }
-
 }
 
 extension ListViewDataSource: NSTableViewDataSource, NSTableViewDelegate {
@@ -51,7 +33,7 @@ extension ListViewDataSource: NSTableViewDataSource, NSTableViewDelegate {
     }
 
     fileprivate struct Metrics {
-        static let headerRowHeight: CGFloat = 232
+        static let headerRowHeight: CGFloat = 75
         static let sessionRowHeight: CGFloat = 64
     }
 
@@ -137,4 +119,6 @@ extension ListViewDataSource: NSTableViewDataSource, NSTableViewDelegate {
             return true
         }
     }
+
+
 }

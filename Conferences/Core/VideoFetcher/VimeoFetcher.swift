@@ -25,7 +25,7 @@
 
 import Cocoa
 
-public class HCVimeoVideoExtractor: NSObject {
+final class HCVimeoVideoExtractor: NSObject {
     fileprivate let domain = "ph.hercsoft.HCVimeoVideoExtractor"
 
     public static func fetchVideoURLFrom(id: String, completionHandler: @escaping ((URL?) -> Void)) {
@@ -43,7 +43,7 @@ public class HCVimeoVideoExtractor: NSObject {
         let session = URLSession.shared
 
 
-        session.dataTask(with: request, completionHandler: { (data, response, error)  -> Void in
+        session.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
                 
             guard error == nil else {
                 completionHandler(nil)
@@ -61,7 +61,7 @@ public class HCVimeoVideoExtractor: NSObject {
                     return
                 }
 
-                if let files = (data as NSDictionary).value(forKeyPath: "request.files.progressive") as? Array<Dictionary<String,Any>> {
+                if let files = (data as NSDictionary).value(forKeyPath: "request.files.progressive") as? Array<Dictionary<String, Any>> {
 
                     let video = HCVimeoVideo()
                     if let title = (data as NSDictionary).value(forKeyPath: "video.title") as? String {
@@ -87,7 +87,7 @@ public class HCVimeoVideoExtractor: NSObject {
                 else {
                     completionHandler(nil)
                 }
-            } catch  {
+            } catch {
                 completionHandler(nil)
             }
         }).resume()
@@ -152,7 +152,7 @@ public enum HCVimeoVideoQuality: String {
     case QualityUnknown = "unknown"
 }
 
-public class HCVimeoVideo: NSObject {
+final class HCVimeoVideo: NSObject {
     public var title = ""
     public var thumbnailURL = [HCVimeoThumbnailQuality: URL]()
     public var videoURL = [HCVimeoVideoQuality: URL]()

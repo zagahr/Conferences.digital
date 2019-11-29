@@ -56,14 +56,10 @@ final class PlaybackViewModel {
                     self.talk.trackProgress(currentPosition: p, relativePosition: relative)
 
                     if relative >= 0.97 {
-                        NotificationCenter.default.post(.init(name: .refreshActiveCell, object: true))
+//                        NotificationCenter.default.post(.init(name: .refreshActiveCell, object: true))
                     } else {
-                        NotificationCenter.default.post(.init(name: .refreshActiveCell))
-                    }
-
-                    //Refresh top
-                    var tag = TagModel(title: "Continue watching", query: "realm_continue", isActive: true)
-                    TagSyncService.shared.handleStoredTag(&tag)
+//                        NotificationCenter.default.post(.init(name: .refreshActiveCell))
+                    }                   
                 }
             }
         }

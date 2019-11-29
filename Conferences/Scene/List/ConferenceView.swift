@@ -6,11 +6,12 @@
 //  Copyright © 2019 Timon Blask. All rights reserved.
 //
 
+import Kingfisher
 import Cocoa
 
 final class ConferenceView: NSView {
     private var conference: ConferenceModel?
-    private weak var imageDownloadOperation: Operation?
+    private var imageDownloadOperation: DownloadTask?
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -27,31 +28,16 @@ final class ConferenceView: NSView {
         v.isRounded = true
         v.layer?.borderWidth = 2
         v.layer?.borderColor = NSColor.activeColor.cgColor
-        v.height(100)
-        v.width(100)
+        v.height(50)
+        v.width(50)
 
         return v
     }()
 
-    private lazy var aboutLabel: NSTextField = {
-        let l = NSTextField(labelWithString: "")
-        l.font = .systemFont(ofSize: 12, weight: .semibold)
-        l.textColor = .secondaryText
-        
-        l.isSelectable = true
-        l.lineBreakMode = .byWordWrapping
-        l.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        l.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        l.alignment = .left
-        l.allowsDefaultTighteningForTruncation = true
-        l.maximumNumberOfLines = 20
-        return l
-    }()
-
     private lazy var websiteButton: ImageButton = {
         let b = ImageButton(frame: .zero)
-        b.height(20)
-        b.width(20)
+        b.height(15)
+        b.width(15)
         b.image = #imageLiteral(resourceName: "internet")
         b.target = self
         b.action = #selector(openHomepage)
@@ -62,8 +48,8 @@ final class ConferenceView: NSView {
 
     private lazy var twitterButton: ImageButton = {
         let b = ImageButton(frame: .zero)
-        b.height(20)
-        b.width(20)
+        b.height(15)
+        b.width(15)
         b.image = #imageLiteral(resourceName: "twitter")
         b.target = self
         b.action = #selector(openTwitter)
@@ -74,8 +60,8 @@ final class ConferenceView: NSView {
 
     private lazy var eventButton: ImageButton = {
         let b = ImageButton(frame: .zero)
-        b.height(20)
-        b.width(20)
+        b.height(15)
+        b.width(15)
         b.image = #imageLiteral(resourceName: "ticket")
         b.target = self
         b.action = #selector(openHomepage)
@@ -84,24 +70,13 @@ final class ConferenceView: NSView {
         return b
     }()
 
-
     private lazy var titleLabel: NSTextField = {
         let l = NSTextField(labelWithString: "")
-        l.font = .systemFont(ofSize: 20, weight: .semibold)
+        l.font = .systemFont(ofSize: 15, weight: .semibold)
         l.textColor = .primaryText
         l.cell?.backgroundStyle = .dark
         l.lineBreakMode = .byTruncatingTail
         l.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-
-        return l
-    }()
-
-    private lazy var subtitleLabel: NSTextField = {
-        let l = NSTextField(labelWithString: "")
-        l.font = .systemFont(ofSize: 12)
-        l.textColor = .secondaryText
-        l.cell?.backgroundStyle = .dark
-        l.lineBreakMode = .byTruncatingTail
 
         return l
     }()
@@ -116,7 +91,7 @@ final class ConferenceView: NSView {
     }()
 
     private lazy var textStackView: NSStackView = {
-        let v = NSStackView(views: [self.titleLabel, self.subtitleLabel])
+        let v = NSStackView(views: [self.titleLabel])
 
         v.orientation = .vertical
         v.alignment = .leading
@@ -142,61 +117,48 @@ final class ConferenceView: NSView {
         return v
     }()
 
-    private lazy var topStackView: NSStackView = {
+    private lazy var stackView: NSStackView = {
         let v = NSStackView(views: [self.logo, self.informationStackView])
 
-        v.alignment = .top
+        v.alignment = .centerY
         v.distribution = .fill
         v.spacing = 15
 
         return v
     }()
 
-    private lazy var stackView: NSStackView = {
-        let v = NSStackView(views: [self.topStackView, self.aboutLabel])
-
-        self.topStackView.width(to: v)
-
-        v.alignment = .top
-        v.orientation = .vertical
-        v.distribution = .equalCentering
-
-        return v
-    }()
-
-
     private func configureView() {
         let containerView = NSView()
         containerView.wantsLayer = true
         containerView.layer?.cornerRadius = 10
-        containerView.layer?.backgroundColor = NSColor.elementBackground.cgColor
+        containerView.layer?.backgroundColor = NSColor.windowBackground.cgColor
         addSubview(containerView)
-        containerView.edgesToSuperview()
+        containerView.edgesToSuperview(insets: .init(top: 5, left: 10, bottom: 5, right: 0))
 
         containerView.addSubview(stackView)
-        stackView.edgesToSuperview(insets: .init(top: 15, left: 15, bottom: 15, right: 15))
+        stackView.edgesToSuperview(insets: .init(top: 5, left: 5, bottom: 5, right: 5))
     }
 
     func configureView(with model: ConferenceModel) {
         self.conference = model
 
         titleLabel.stringValue = model.name
-        subtitleLabel.stringValue = model.location
 
         twitterButton.isHidden = model.organisator.twitter != nil ? false : true
         eventButton.isHidden = model.organisator.nextEvent != nil ? false : true
         websiteButton.isHidden = false
 
-        aboutLabel.stringValue = model.about
-
+        self.logo.image = NSImage(named: "placeholder-square")
         guard let imageUrl = URL(string: model.logo) else { return }
 
-        self.imageDownloadOperation?.cancel()
-        self.logo.image = NSImage(named: "placeholder-square")
-        self.imageDownloadOperation = ImageDownloadCenter.shared.downloadImage(from: imageUrl, thumbnailHeight: 100) { [weak self] url, _, thumb in
-            guard url == imageUrl, thumb != nil else { return }
-            self?.logo.isHidden = false
-            self?.logo.image = thumb
+        imageDownloadOperation?.cancel()
+
+        imageDownloadOperation = KingfisherManager.shared.retrieveImage(with: imageUrl) { result in
+            if let image = try? result.get() {
+                self.logo.image = image.image
+            } else {
+                self.logo.image = NSImage(named: "placeholder-square")
+            }
         }
     }
 

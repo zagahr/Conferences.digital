@@ -311,7 +311,7 @@ public final class ImageButton: NSControl {
     }
 
     public override var allowsVibrancy: Bool {
-        return true
+        return false
     }
 
     public override func acceptsFirstMouse(for event: NSEvent?) -> Bool {

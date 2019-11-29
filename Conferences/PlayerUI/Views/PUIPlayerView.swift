@@ -230,7 +230,7 @@ public final class PUIPlayerView: NSView {
 
         if pictureContainer == nil {
             pictureContainer = PUIPictureContainerViewController(playerLayer: playerLayer)
-          //  pictureContainer.delegate = self
+            pictureContainer.delegate = self
             pictureContainer.view.frame = bounds
             pictureContainer.view.autoresizingMask = [.width, .height]
 
@@ -416,7 +416,7 @@ public final class PUIPlayerView: NSView {
 
         elapsedTimeLabel.stringValue = String(time: time) ?? ""
 
-          let remainingTime = CMTimeSubtract(duration, time)
+        let remainingTime = CMTimeSubtract(duration, time)
         remainingTimeLabel.stringValue = String(time: remainingTime) ?? ""
     }
 
@@ -424,8 +424,6 @@ public final class PUIPlayerView: NSView {
         if let player = player {
             teardown(player: player)
         }
-
-        stopMonitoringKeyEvents()
     }
 
     // MARK: - Now Playing Coordination
@@ -520,13 +518,13 @@ public final class PUIPlayerView: NSView {
         return l
     }()
 
-    private lazy var fullScreenButton: PUIButton = {
-        let b = PUIButton(frame: .zero)
+    private lazy var fullScreenButton: PUIVibrantButton = {
+        let b = PUIVibrantButton(frame: .zero)
 
-        b.image = .PUIFullScreen
-        b.target = self
-        b.action = #selector(toggleFullscreen)
-        b.toolTip = "Toggle full screen"
+        b.button.image = .PUIFullScreen
+        b.button.target = self
+        b.button.action = #selector(toggleFullscreen)
+        b.button.toolTip = "Toggle full screen"
 
         return b
     }()
@@ -995,6 +993,24 @@ public final class PUIPlayerView: NSView {
         }
     }
 
+    public func reduceSpeed() {
+        guard let speedIndex = PUIPlaybackSpeed.all.firstIndex(of: playbackSpeed) else { return }
+        if speedIndex > 0 {
+            playbackSpeed = PUIPlaybackSpeed.all[speedIndex - 1]
+            showControls(animated: true)
+            resetMouseIdleTimer()
+        }
+    }
+
+    public func increaseSpeed() {
+        guard let speedIndex = PUIPlaybackSpeed.all.firstIndex(of: playbackSpeed) else { return }
+        if speedIndex < PUIPlaybackSpeed.all.count - 1 {
+            playbackSpeed = PUIPlaybackSpeed.all[speedIndex + 1]
+            showControls(animated: true)
+            resetMouseIdleTimer()
+        }
+    }
+
     @IBAction public func addAnnotation(_ sender: NSView?) {
         guard let player = player else { return }
 
@@ -1081,7 +1097,7 @@ public final class PUIPlayerView: NSView {
         // reset all item's states
         sender.menu?.items.forEach({ $0.state = .on })
 
-        if option.extendedLanguageTag == player?.currentItem?.selectedMediaOption(in: subtitlesGroup)?.extendedLanguageTag {
+        if option.extendedLanguageTag == player?.currentItem?.currentMediaSelection.selectedMediaOption(in: subtitlesGroup)?.extendedLanguageTag {
             player?.currentItem?.select(nil, in: subtitlesGroup)
             sender.state = .off
             return
@@ -1131,6 +1147,11 @@ public final class PUIPlayerView: NSView {
         case spaceBar = 49
         case leftArrow = 123
         case rightArrow = 124
+        case minus = 27
+        case plus = 24
+        case j = 38
+        case k = 40
+        case l = 37
     }
 
     private func startMonitoringKeyEvents() {
@@ -1150,16 +1171,24 @@ public final class PUIPlayerView: NSView {
             guard !self.timelineView.isEditingAnnotation else { return event }
 
             switch command {
-            case .spaceBar:
+            case .spaceBar, .k:
                 self.togglePlaying(nil)
                 return nil
 
-            case .leftArrow:
+            case .leftArrow, .j:
                 self.goBackInTime(nil)
                 return nil
 
-            case .rightArrow:
+            case .rightArrow, .l:
                 self.goForwardInTime(nil)
+                return nil
+
+            case .minus:
+                self.reduceSpeed()
+                return nil
+
+            case .plus:
+                self.increaseSpeed()
                 return nil
             }
         }
@@ -1243,7 +1272,7 @@ public final class PUIPlayerView: NSView {
         guard isPlaying else { return false }
         guard player.status == .readyToPlay else { return false }
         guard let window = window else { return false }
-        guard NSApp.isActive && window.isOnActiveSpace && window.isVisible else { return false }
+        guard window.isOnActiveSpace && window.isVisible else { return false }
 
         guard !timelineView.isEditingAnnotation else { return false }
 
@@ -1356,7 +1385,6 @@ public final class PUIPlayerView: NSView {
         // resigning main in full screen means we're leaving the space
         if windowIsInFullScreen {
             resetMouseIdleTimer(start: false)
-            showControls(animated: false)
         }
     }
 
@@ -1568,7 +1596,7 @@ extension PUIPlayerView: PUIExternalPlaybackConsumer {
     }
 
     public func externalPlaybackProvider(_ provider: PUIExternalPlaybackProvider, deviceSelectionMenuDidChangeWith menu: NSMenu) {
-        guard let registrationIndex = externalPlaybackProviders.index(where: { type(of: $0.provider).name == type(of: provider).name }) else { return }
+        guard let registrationIndex = externalPlaybackProviders.firstIndex(where: { type(of: $0.provider).name == type(of: provider).name }) else { return }
 
         externalPlaybackProviders[registrationIndex].menu = menu
     }
@@ -1645,4 +1673,57 @@ extension PUIPlayerView: PIPViewControllerDelegate, PUIPictureContainerViewContr
         }
     }
 
+}
+
+
+class PUIVibrantButton: NSView {
+
+    private lazy var vfxView: NSVisualEffectView = {
+        let v = NSVisualEffectView(frame: .zero)
+
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.blendingMode = .withinWindow
+        v.material = .dark
+        v.appearance = NSAppearance(named: .vibrantDark)
+        v.state = .active
+
+        return v
+    }()
+
+    lazy var button: PUIButton = {
+        let v = PUIButton(frame: .zero)
+
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
+    public override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+
+        wantsLayer = true
+        layer?.masksToBounds = true
+        layer?.cornerRadius = 10
+
+        buildUI()
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func buildUI() {
+        addSubview(vfxView)
+
+        vfxView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        vfxView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        vfxView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        vfxView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
+        vfxView.addSubview(button)
+        vfxView.heightAnchor.constraint(equalTo: button.heightAnchor, multiplier: 1, constant: 20).isActive = true
+        vfxView.widthAnchor.constraint(equalTo: button.widthAnchor, multiplier: 1, constant: 20).isActive = true
+        button.centerXAnchor.constraint(equalTo: vfxView.centerXAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: vfxView.centerYAnchor).isActive = true
+    }
 }

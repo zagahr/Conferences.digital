@@ -7,12 +7,16 @@
 //
 
 import Cocoa
+import Kingfisher
 
 protocol ShelfViewControllerDelegate: class {
-    func shelfViewControllerDidSelectPlay(_ controller: ShelfViewController)
+    func shelfViewControllerDidSelectPlay(_ controller: ShelfViewController, talk: TalkModel)
 }
 
 class ShelfViewController: NSViewController {
+    private var talk: TalkModel?
+    private var imageDownloadOperation: DownloadTask?
+
     var playerController: Playable? {
         didSet {
             guard let playerController = playerController else { return }
@@ -33,8 +37,6 @@ class ShelfViewController: NSViewController {
             playerController.play()
         }
     }
-
-    private weak var imageDownloadOperation: Operation?
 
     weak var delegate: ShelfViewControllerDelegate?
 
@@ -68,15 +70,8 @@ class ShelfViewController: NSViewController {
     }
 
     func configureView(with talk: TalkModel) {
+        self.talk = talk
         playButton.state = .off
-
-        guard talk.currentlyPlaying == false else {
-            NSAnimationContext.runAnimationGroup({ _ in
-                playerContainer.animator().isHidden = false
-                playerContainer.animator().alphaValue = 1
-            }, completionHandler: nil)
-            return
-        }
 
         NSAnimationContext.runAnimationGroup({ _ in
             playerContainer.animator().alphaValue = 0
@@ -85,20 +80,23 @@ class ShelfViewController: NSViewController {
         })
 
         previewImage.image = NSImage(named: "placeholder")
+        imageDownloadOperation?.cancel()
 
         guard let imageUrl = URL(string: talk.previewImage) else { return }
 
-        self.imageDownloadOperation?.cancel()
-
-        self.imageDownloadOperation = ImageDownloadCenter.shared.downloadImage(from: imageUrl, thumbnailHeight: 150) { [weak self] url, original, _ in
-            guard url == imageUrl, original != nil else { return }
-
-            self?.previewImage.image = original
+        imageDownloadOperation = KingfisherManager.shared.retrieveImage(with: imageUrl) { result in
+            if let image = try? result.get() {
+                self.previewImage.image = image.image
+            } else {
+                self.previewImage.image = NSImage(named: "placeholder")
+            }
         }
     }
 
     @objc private func play(_ sender: Any?) {
+        guard let talk = talk else { return }
+        
         playerContainer.subviews.forEach {$0.removeFromSuperview() }
-        self.delegate?.shelfViewControllerDidSelectPlay(self)
+        self.delegate?.shelfViewControllerDidSelectPlay(self, talk: talk)
     }
 }

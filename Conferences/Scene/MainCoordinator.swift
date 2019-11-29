@@ -24,7 +24,6 @@ final class MainCoordinator {
     }
 
     func start() {
-        Storage.shared.clearCurrentlyWatching()
         rootViewController.loadingView.show()
         talkService.fetchData()
 

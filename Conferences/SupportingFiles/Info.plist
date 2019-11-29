@@ -24,7 +24,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.0.1</string>
 	<key>CFBundleVersion</key>
-	<string>20</string>
+	<string>21</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -52,7 +52,7 @@
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>https://conferences.digital/updates/appcast.xml</string>
+	<string>https://zagahr.github.io/Conferences.digital/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>E/xu8gWS4/pswEKpxOyHBiJ8PHTYk9fM68sDa70yoL8=</string>
 	<key>SUScheduledCheckInterval</key>
