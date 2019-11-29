@@ -22,6 +22,7 @@ default_platform(:mac)
         UI.user_error!("Wrong release type use: alpha or release")
       end
 
+      increment_build_number
       build
       
       build_number = get_build_number(xcodeproj: "Conferences.xcodeproj")
@@ -40,31 +41,16 @@ default_platform(:mac)
       sh("rm ../Releases/Conferences_latest.zip")
       sh("cd ../Releases && zip -r" + " " + filename + " " + "Conferences.app")
       sh("rm -r ../Releases/Conferences.app")
-      sh("./../Pods/Sparkle/bin/generate_appcast ../Releases/")
-      sh("cd ../Releases && sed 's#https://conferences.digital/updates/#https://github.com/zagahr/Conferences.digital/releases/download/" + tag + "/#' appcast.xml > appcast.xml.tmp && mv appcast.xml.tmp appcast.xml")
-      
-      sh("rm -r ../../updates/*")
-      sh("cp ../Releases/" + filename + " ../../updates")
-      sh("cp ../Releases/appcast.xml ../../updates")
-      sh("mv ../Releases/" + filename + " ../Releases/Conferences_latest.zip")
       
       puts "All done"
       puts "Tag: " + tag
     end
 
-    desc "Deploy new version to Sparkle"
-    lane :deploy do
-      sh("eval $(docker-machine env conference-server)")
-      sh("mv ../../updates/*.zip ../../updates/Conferences.zip")
-      sh("docker cp ../../updates conferences-server_server_1:/app/Public/")
-    end
-
     desc "Build new release version"
     lane :build  do
       increment_build_number
-      build_app(scheme: "Conferences-Server",
+      build_app(scheme: "Conferences",
             configuration: "Release",
             workspace: "Conferences.xcworkspace",
-            output_directory: "Releases",
-            toolchain: "org.swift.5020190129a")
+            output_directory: "Releases")
     end

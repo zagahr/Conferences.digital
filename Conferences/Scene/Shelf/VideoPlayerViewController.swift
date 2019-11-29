@@ -278,7 +278,7 @@ extension VideoPlayerViewController: PUIPlayerViewAppearanceDelegate {
     }
 
     func playerViewShouldShowFullScreenButton(_ playerView: PUIPlayerView) -> Bool {
-        return false
+        return true
     }
 
     func playerViewShouldShowTimelineView(_ playerView: PUIPlayerView) -> Bool {

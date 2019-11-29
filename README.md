@@ -36,19 +36,6 @@ As soon as new conferences/talks have been added it will be announced on [twitte
 - [x] Updates via Sparkle 
 - [x] Watchlist 
 - [x] Continue watching / Track progress
-- [ ] Touch Bar support
-
-<br>
-
-## iOS app
-
-I was approached by a number of people asking if and whether an iOS version was available. Although I had designed the app thinking that the demand for a macOS app was greater than for an iOS app, I saw the opportunity to develop this project further and am currently in the progress of writing the iOS version.
-
-The repository of the iOS app can be found [here.](https://github.com/zagahr/Conferences-for-iOS)
-
-<p align="center">
-    <img alt="Screenshot" src="https://github.com/zagahr/Conferences-for-iOS/raw/develop/.github/github_banner.png" width="100%"></a>
-</p>
 
 <br>
 

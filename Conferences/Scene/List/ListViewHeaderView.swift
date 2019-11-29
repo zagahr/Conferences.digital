@@ -78,7 +78,7 @@ final class ListViewHeaderView: NSView {
         searchContainer.addSubview(searchBar)
         searchBar.widthToSuperview()
         searchBar.centerInSuperview()
-        stackView.centerInSuperview()
+        stackView.centerYToSuperview()
         stackView.leftToSuperview(offset: 20)
         stackView.rightToSuperview(offset: -10)
         stackView.height(70)
