@@ -21,7 +21,7 @@
                             {% endif %}
                             <enclosure
                                 url="{{ asset.browser_download_url }}"
-                                sparkle:version="{{ version }}"
+                                sparkle:version="{{ version | split: "-" | last | remove: "alpha" }}"
                                 {% if short_version %}sparkle:shortVersionString="{{ release.tag_name | remove_first:'v' }}"{% endif %}
                                 length="{{ asset.size }}"
                                 type="application/octet-stream" />
