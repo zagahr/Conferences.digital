@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Conferences.digital" src=".github/github_banner.png" width="80%">
+    <img alt="Conferences.digital" src="https://raw.githubusercontent.com/zagahr/Conferences.digital/master/.github/github_banner.png" width="80%">
 </p>
 <p align="center">
 <a href="">
@@ -36,19 +36,6 @@ As soon as new conferences/talks have been added it will be announced on [twitte
 - [x] Updates via Sparkle 
 - [x] Watchlist 
 - [x] Continue watching / Track progress
-- [ ] Touch Bar support
-
-<br>
-
-## iOS app
-
-I was approached by a number of people asking if and whether an iOS version was available. Although I had designed the app thinking that the demand for a macOS app was greater than for an iOS app, I saw the opportunity to develop this project further and am currently in the progress of writing the iOS version.
-
-The repository of the iOS app can be found [here.](https://github.com/zagahr/Conferences-for-iOS)
-
-<p align="center">
-    <img alt="Screenshot" src="https://github.com/zagahr/Conferences-for-iOS/raw/develop/.github/github_banner.png" width="100%"></a>
-</p>
 
 <br>
 
@@ -69,8 +56,6 @@ If you have any other issues check out [#9](https://github.com/zagahr/Conference
 <br>
 
 ## Contributing
-
-[Join the chat on Slack](https://join.slack.com/t/conferencesdigital/shared_invite/enQtNTc3MjEyNzE0NTYxLTU2NTgxOTI3YjBlN2JkZTA2ODAxMTQ0OWJlMDhmMjZmZWMzNTA1OTM3YjQ3YzRkZjZhZGEzNzdhN2M2ZjAxNDI)
 
 If you have any ideas how to improve the app or you wish yourself a new feature you can submit an pull request or create an issue [here](https://github.com/zagahr/Conferences.digital/issues).
 
