@@ -54,7 +54,11 @@ extension SplitViewCoordinator: ShelfViewControllerDelegate {
 
         LoggingHelper.register(event: .playTalk, info: ["videoId": String(talk.id), "source": talk.source.rawValue])
 
-        createNativePlayer(controller, talk: talk)
+        if talk.source == .vimeo {
+            createNativePlayer(controller, talk: talk)
+        } else {
+            createWebPlayer(controller, talk: talk)
+        }
     }
 
     private func createNativePlayer(_ controller: ShelfViewController, talk: TalkModel) {
