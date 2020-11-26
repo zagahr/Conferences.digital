@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "1FBBDD90-1B74-4A7D-B553-DCDF20AFC3E0",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Conferences.xcodeproj",
+        "identifier" : "6698630625701BA300E91A2E",
+        "name" : "ConferencesTests"
+      }
+    }
+  ],
+  "version" : 1
+}

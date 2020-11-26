@@ -11,14 +11,27 @@ import Kingfisher
 import TinyConstraints
 import LetsMove
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-    let coordinator = AppCoordinator(windowController: MainWindowController())
+final class AppDelegate: NSObject, NSApplicationDelegate {
+
+    private lazy var mainFactory: MainFactory = {
+        MainFactory(
+            talkService: TalkService(apiClient: APIClient()),
+            isNewUser: UserDefaults.standard.bool(forKey: "signup") == false,
+            setNewUser: {
+                UserDefaults.standard.setValue(true, forKey: "signup")
+            }
+        )
+    }()
+
+    private lazy var coordinator: AppCoordinator = {
+        AppCoordinator(
+            mainCoordinator: mainFactory.mainCoordinator(),
+            windowController: MainWindowController()
+        )
+    }()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         guard PFMoveIsInProgress() == false else { return }
-
-
 
         coordinator.start()
     }

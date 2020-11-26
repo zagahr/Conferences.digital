@@ -9,8 +9,11 @@
 import Foundation
 import WebKit
 
-final class SplitViewCoordinator {
-    private let rootViewController: SplitViewController
+final class MainCoordinator {
+    
+    // MARK: - Properties
+    
+    private let rootViewController: MainViewController
     private var currentPlayer: Playable?
 
     lazy var listDataDelegate: ListViewDataSource = {
@@ -20,18 +23,19 @@ final class SplitViewCoordinator {
         return l
     }()
 
-    init(rootViewController: SplitViewController) {
+    // MARK: - Initialization
+    
+    init(rootViewController: MainViewController) {
         self.rootViewController = rootViewController
         self.rootViewController.coordinateDelegate = self
     }
-
-    func start(with talks: [Codable]) {
-        listDataDelegate.talks = talks
-        rootViewController.listViewController.tableView.reloadData()
+    
+    func start() -> NSViewController {
+        rootViewController
     }
 }
 
-extension SplitViewCoordinator: ListViewDataSourceDelegate {
+extension MainCoordinator: ListViewDataSourceDelegate {
 
     func didSelectTalk(_ talk: TalkModel) {
         
@@ -47,7 +51,7 @@ extension SplitViewCoordinator: ListViewDataSourceDelegate {
 
 }
 
-extension SplitViewCoordinator: ShelfViewControllerDelegate {
+extension MainCoordinator: ShelfViewControllerDelegate {
     func shelfViewControllerDidSelectPlay(_ controller: ShelfViewController, talk: TalkModel) {
         currentPlayer?.removeFromParent()
         currentPlayer = nil

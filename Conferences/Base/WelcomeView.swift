@@ -114,7 +114,7 @@ final class WelcomeView: NSView {
         UserDefaults.standard.setValue(true, forKey: "signup")
 
         LoggingHelper.registerSignUp()
-        MainCoordinator.keyEventsActive = true
+//        MainCoordinator.keyEventsActive = true
         
         NSAnimationContext.runAnimationGroup({ _ in
             self.animator().alphaValue = 0

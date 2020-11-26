@@ -12,9 +12,11 @@ final class AppCoordinator {
     var windowController: MainWindowController
     private var mainCoordinator: MainCoordinator
 
-    init(windowController: MainWindowController) {
-        mainCoordinator = MainCoordinator()
-
+    init(
+        mainCoordinator: MainCoordinator,
+        windowController: MainWindowController
+    ) {
+        self.mainCoordinator = mainCoordinator
         self.windowController = windowController
         NSApp.appearance = NSAppearance(named: .darkAqua)
     }
@@ -31,9 +33,7 @@ final class AppCoordinator {
             LoggingHelper.install()
         #endif
 
-        mainCoordinator.start()
-
-        windowController.contentViewController = mainCoordinator.rootViewController
+        windowController.contentViewController = mainCoordinator.start()
         windowController.showWindow(self)
         windowController.windowFrameAutosaveName = "main"
     }

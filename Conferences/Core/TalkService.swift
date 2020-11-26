@@ -7,51 +7,61 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 extension NSNotification.Name {
     public static let UserDidSearch = NSNotification.Name("UserDidSearchNotification")
 }
 
-protocol TalkServiceDelegate: class {
-    func didFetch(_ talks: [Codable])
-    func fetchFailed(with error: APIError)
+protocol TalkServiceType {
+    func fetchData() -> Observable<[Codable]>
 }
 
-final class TalkService {
-    weak var delegate: TalkServiceDelegate?
-    private let apiClient = APIClient()
+final class TalkService: TalkServiceType {
+
+    // MARK: - Properties
+
+    private let apiClient: APIClient
 
     private var talks = [Codable]()
-    
-    init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(filterTalks(_:)), name: Notification.Name.UserDidSearch, object: nil)
+
+    // MARK: - Initalization
+
+    init(apiClient: APIClient) {
+        self.apiClient = apiClient
     }
-    
-    func fetchData() {
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            self?.apiClient.send(resource: ConferenceResource.all, completionHandler: { [weak self] (response: Result<[ConferenceModel], APIError>) in
-                switch response {
-                case .success(let models):
-                    var result = [Codable]()
 
-                    models.forEach {
-                        result.append($0)
-                        result.append(contentsOf: $0.talks)
+    func fetchData() -> Observable<[Codable]> {
+        Observable.create({ observer -> Disposable in
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                self?.apiClient.send(resource: ConferenceResource.all, completionHandler: { [weak self] (response: Result<[ConferenceModel], APIError>) in
+                    switch response {
+                    case .success(let models):
+                        var result = [Codable]()
+
+                        models.forEach {
+                            result.append($0)
+                            result.append(contentsOf: $0.talks)
+                        }
+
+                        self?.talks = result
+
+                        DispatchQueue.main.async {
+                            observer.onNext(result)
+                        }
+
+                    case .failure(let error):
+                        observer.onError(error)
                     }
+                })
+            }
 
-                    self?.talks = result
-
-                    DispatchQueue.main.async {
-                        self?.delegate?.didFetch(result)
-                    }
-
-                case .failure(let error):
-                    DispatchQueue.main.async { self?.delegate?.fetchFailed(with: error) }
-                }
-            })
-        }
+            return Disposables.create()
+        })
+        .take(1)
     }
-    
+
     @objc func filterTalks(_ notification: NSNotification) {
         if let search = notification.userInfo?["searchTerm"] as? String {
             searchTalks(by: search)
@@ -77,13 +87,13 @@ final class TalkService {
         talks = talks.filter { $0.searchString.contains(searchTerm) }
 
         DispatchQueue.main.async {
-            self.delegate?.didFetch(talks)
+//            self.delegate?.didFetch(talks)
         }
     }
 
     private func getAllTalks() {
         DispatchQueue.main.async {
-            self.delegate?.didFetch(self.talks)
+//            self.delegate?.didFetch(self.talks)
         }
     }
 
@@ -100,7 +110,7 @@ final class TalkService {
         }
 
         DispatchQueue.main.async {
-            self.delegate?.didFetch(talks)
+//            self.delegate?.didFetch(talks)
         }
     }
 }

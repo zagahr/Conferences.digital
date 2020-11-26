@@ -1,19 +1,27 @@
 PODS:
-  - Crashlytics (3.12.0):
-    - Fabric (~> 1.9.0)
-  - Fabric (1.9.0)
-  - Kingfisher (5.9.0):
-    - Kingfisher/Core (= 5.9.0)
-  - Kingfisher/Core (5.9.0)
-  - LetsMove (1.24)
+  - Crashlytics (3.14.0):
+    - Fabric (~> 1.10.2)
+  - Fabric (1.10.2)
+  - Kingfisher (5.15.7):
+    - Kingfisher/Core (= 5.15.7)
+  - Kingfisher/Core (5.15.7)
+  - LetsMove (1.25)
   - Realm (3.20.0):
     - Realm/Headers (= 3.20.0)
   - Realm/Headers (3.20.0)
   - RealmSwift (3.20.0):
     - Realm (= 3.20.0)
-  - Sparkle (1.21.3)
-  - SwiftLint (0.37.0)
-  - TinyConstraints (3.3.1)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - RxTest (5.1.1):
+    - RxSwift (~> 5)
+  - Sparkle (1.24.0)
+  - SwiftLint (0.40.3)
+  - TinyConstraints (4.0.1)
   - YoutubePlayer-in-WKWebView (0.2.5)
 
 DEPENDENCIES:
@@ -22,6 +30,9 @@ DEPENDENCIES:
   - Kingfisher (~> 5.0)
   - LetsMove
   - RealmSwift (~> 3.20.0)
+  - RxCocoa
+  - RxSwift
+  - RxTest
   - Sparkle
   - SwiftLint
   - TinyConstraints
@@ -35,6 +46,10 @@ SPEC REPOS:
     - LetsMove
     - Realm
     - RealmSwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - RxTest
     - Sparkle
     - SwiftLint
     - TinyConstraints
@@ -50,17 +65,21 @@ CHECKOUT OPTIONS:
     :git: https://github.com/zagahr/YoutubePlayer-in-WKWebView.git
 
 SPEC CHECKSUMS:
-  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
-  Kingfisher: ff98240aebb7302bdc4f1ecd701761030ce18b16
-  LetsMove: fefe56bc7bc7fb7d37049e28a14f297961229fc5
+  Crashlytics: 9220f5bc89e7a618df411b4f639389dbfb0e03d2
+  Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
+  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
+  LetsMove: 7b9fe44737707d984fbd3f47af46609a9a07b461
   Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
   RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
-  Sparkle: 3f75576db8b0265adef36c43249d747f22d0b708
-  SwiftLint: c078a14d7d7ade75e5507795d185e3da41d844d2
-  TinyConstraints: dbf7519aefc01ea59d62244300c7718aec68e280
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  RxTest: 711632d5644dffbeb62c936a521b5b008a1e1faa
+  Sparkle: 270cd27377bf04e9c128af06e3a22d0f572d6ee3
+  SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
+  TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
   YoutubePlayer-in-WKWebView: 59b2a6157b043daf81e58e14bfc4a9c3264f6ed6
 
-PODFILE CHECKSUM: 4997fe6a524fa1ea99ab31af15df579cb76b1146
+PODFILE CHECKSUM: 0f194144a82e38baf720e39cd5b5e6ebd9f3e407
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3
